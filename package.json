@@ -4,8 +4,8 @@
   "description": "Front End du projet 5 OC",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch ./sass/main.scss:./public/css/style.css",
-    "prefix": "postcss --watch ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/"
+    "sass": "sass --watch ./sass/main.scss:./css/style.css",
+    "prefix": "postcss --watch ./css/style.css --use autoprefixer -d ./public/css/prefixed/"
   },
   "repository": {
     "type": "git",
