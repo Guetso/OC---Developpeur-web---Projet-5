@@ -1,0 +1,20 @@
+{
+  "name": "project5_front",
+  "version": "1.0.0",
+  "description": "Front End du projet 5 OC",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./public/css/style.css",
+    "prefix": "postcss --watch ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Guetso/Project5_front.git"
+  },
+  "author": "HH",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Guetso/Project5_front/issues"
+  },
+  "homepage": "https://github.com/Guetso/Project5_front#readme"
+}
