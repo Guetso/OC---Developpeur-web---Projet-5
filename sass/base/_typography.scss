@@ -1,0 +1,47 @@
+@font-face {
+    font-family: "source-sans-pro-bold";
+    src: url(../../fonts/source-sans-pro/SourceSansPro-Bold.otf);
+}
+
+@font-face {
+    font-family: "merriweather-Light";
+    src: url(../../fonts/merriweather/Merriweather-Light.otf);
+}
+
+@font-face {
+    font-family: "merriweather-Lightitalic";
+    src: url(../../fonts/merriweather/Merriweather-LightItalic.otf);
+}
+body {
+    #content {
+        font-family: "merriweather-Light", helvetica, sans-serif;
+        line-height: 2.375em;
+    }
+
+    h1 {
+        font-family: "source-sans-pro-bold", helvetica, sans-serif;
+        font-size: 3rem;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.075em;
+
+        & + p {
+            color: #fff;
+            font-family: "merriweather-Lightitalic", helvetica, sans-serif;
+            font-size: 1rem;
+        }
+    }
+
+    h2 {
+        font-family: "source-sans-pro-bold", helvetica, sans-serif;
+        font-size: 2rem;
+        color: #000;
+        text-transform: uppercase;
+        letter-spacing: 0.075em;
+        & + p {
+            font-family: "merriweather-Lightitalic", helvetica, sans-serif;
+            font-size: 1rem;
+            color: #4b4b4b
+        }
+    }
+}

@@ -1,0 +1,27 @@
+body {
+    background-color: #bababa;
+    margin: 0;
+    #content {
+        display: flex;
+        flex-direction: column;
+        header {
+            h1 {
+                text-align: center;
+                margin-top: 100%;
+                & + p {
+                    text-align: center;
+                }
+            }
+        }
+        section {
+            background-color: #fff;
+            padding-top: 2rem;
+            h2 {
+                text-align: center;
+                & + p {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
