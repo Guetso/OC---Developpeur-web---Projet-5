@@ -17,6 +17,10 @@ ul {
             }
             &__btn{
                 width: 50vw;
+                padding: 0;
+                a{
+                    display: block;
+                }
             }
         }
     }

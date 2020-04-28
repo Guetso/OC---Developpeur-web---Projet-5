@@ -1,0 +1,1 @@
+import { getItems } from "./config.js";
