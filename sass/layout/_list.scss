@@ -15,12 +15,13 @@ ul {
                     height: auto;
                 }
             }
-            &__btn{
+            &__btn {
                 width: 50vw;
                 padding: 0;
-                a{
-                    display: block;
-                }
+                display: block;
+                background-color: #f0f0f0;
+                text-align: center;
+                border: solid 1px #bababa;
             }
         }
     }

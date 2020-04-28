@@ -21,10 +21,9 @@ const createList = function () { // On créé une fonction qui va récupérer le
             h3.classList.add("item__title")
             h3.innerText = item.name
 
-            const btn = li.appendChild(document.createElement("button")) // On créé un bouton pour accéder au détail de l'appareil et le commander
-            btn.classList.add("item__btn")
-            const a = btn.appendChild(document.createElement("a"))
+            const a = li.appendChild(document.createElement("a")) // On créé un lien pour accéder au détail de l'appareil et le commander
             a.setAttribute("href","produit.html#"+item._id)
+            a.classList.add("item__btn")
             a.innerText ="Voir ce modèle"
 
         }

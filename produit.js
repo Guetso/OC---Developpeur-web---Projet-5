@@ -8,9 +8,9 @@ const createItem = function () { // On créé une fonction qui va récupérer le
         const item = response//Si la requête Xrh aboutie, il faudra créer une constante "item", qui sera la réponse de la promesse regroupant ainsi les différents modèle de caméra dans un array
         const sheet = document.querySelector(".sheet") // On accède à l'élément "article" de produit.html
 // Création du titre contenant le nom de l'article
-        const h2 = sheet.appendChild(document.createElement("h2"))
-        h2.classList.add("sheet__title")
-        h2.innerText = item.name
+        const h3 = sheet.appendChild(document.createElement("h3"))
+        h3.classList.add("sheet__title")
+        h3.innerText = item.name
 // Création des éléments nécessaires pour afficher la photo de l'article
         const divImg = sheet.appendChild(document.createElement("div")) // On créer l'élément contenant l'image de l'item sous forme de div
         divImg.classList.add("sheet__img") // On lui donne une classe

@@ -39,6 +39,10 @@ body h2 + p {
   color: #4b4b4b;
 }
 
+.item__btn {
+  font-size: 0.8rem;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -85,9 +89,10 @@ ul li .item__img img {
 ul li .item__btn {
   width: 50vw;
   padding: 0;
-}
-ul li .item__btn a {
   display: block;
+  background-color: #f0f0f0;
+  text-align: center;
+  border: solid 1px #bababa;
 }
 
 body {
@@ -125,6 +130,9 @@ body #content .error {
   border: solid 1px;
 }
 
+.sheet__title {
+  text-align: center;
+}
 .sheet__specs {
   padding: 1rem;
 }
