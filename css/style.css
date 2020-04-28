@@ -55,8 +55,11 @@ body #content header h1 + p {
   text-align: center;
 }
 body #content section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #fff;
-  padding-top: 2rem;
+  padding: 2rem 1rem;
 }
 body #content section h2 {
   text-align: center;
@@ -85,7 +88,23 @@ body #content section h2 + p {
 }
 
 ul {
+  display: flex;
+  flex-direction: column;
   list-style: none;
+  padding: 0;
+}
+ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 5vh;
+}
+ul li .item__img img {
+  width: 100vw;
+  height: auto;
+}
+ul li .item__btn {
+  width: 50vw;
 }
 
 /*# sourceMappingURL=style.css.map */
