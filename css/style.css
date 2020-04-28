@@ -39,41 +39,6 @@ body h2 + p {
   color: #4b4b4b;
 }
 
-body {
-  background-color: #bababa;
-  margin: 0;
-}
-body #content {
-  display: flex;
-  flex-direction: column;
-}
-body #content header h1 {
-  text-align: center;
-  margin-top: 100%;
-}
-body #content header h1 + p {
-  text-align: center;
-}
-body #content section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #fff;
-  padding: 2rem 1rem;
-}
-body #content section h2 {
-  text-align: center;
-}
-body #content section h2 + p {
-  text-align: center;
-}
-body #content .error {
-  color: red;
-  font-style: italic;
-  text-align: center;
-  border: solid 1px;
-}
-
 .bg {
   background-position: center;
   background-repeat: no-repeat;
@@ -111,6 +76,41 @@ ul li .item__img img {
 }
 ul li .item__btn {
   width: 50vw;
+}
+
+body {
+  background-color: #bababa;
+  margin: 0;
+}
+body #content {
+  display: flex;
+  flex-direction: column;
+}
+body #content header h1 {
+  text-align: center;
+  margin-top: 100%;
+}
+body #content header h1 + p {
+  text-align: center;
+}
+body #content section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 2rem 1rem;
+}
+body #content section h2 {
+  text-align: center;
+}
+body #content section h2 + p {
+  text-align: center;
+}
+body #content .error {
+  color: red;
+  font-style: italic;
+  text-align: center;
+  border: solid 1px;
 }
 
 /*# sourceMappingURL=style.css.map */
