@@ -67,6 +67,12 @@ body #content section h2 {
 body #content section h2 + p {
   text-align: center;
 }
+body #content .error {
+  color: red;
+  font-style: italic;
+  text-align: center;
+  border: solid 1px;
+}
 
 .bg {
   background-position: center;

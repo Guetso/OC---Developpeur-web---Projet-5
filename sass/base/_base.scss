@@ -26,5 +26,11 @@ body {
                 }
             }
         }
+        .error {
+            color: red;
+            font-style: italic;
+            text-align: center;
+            border: solid 1px;
+        }
     }
 }
