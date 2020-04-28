@@ -1,0 +1,17 @@
+.sheet{
+    &__specs {
+        padding: 1rem;
+    }
+    &__img{
+        img{
+            width: 100vw;
+            height: auto;
+        }
+    }
+    &__label{
+        padding: 1rem;
+    }
+    &__form{
+        margin-left:1rem;
+    }
+}
