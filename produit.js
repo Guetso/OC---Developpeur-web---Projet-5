@@ -6,35 +6,20 @@ const createItem = function () { // On créé une fonction qui va récupérer le
     const url = "http://localhost:3000/api/cameras/" + id // L'URL chargée sera celle correspondant à l'id du produit
     get(url).then(function (response) { // Elle fera appel à la fonction get avec l'URL appropriée, la fonction get contenant une promesse, on lui indique quoi faire en cas de succès de la requête
         const item = response//Si la requête Xrh aboutie, il faudra créer une constante "item", qui sera la réponse de la promesse regroupant ainsi les différents modèle de caméra dans un array
-        const sheet = document.querySelector(".sheet") // On accède à l'élément "article" de produit.html
+
 // Création du titre contenant le nom de l'article
-        const h3 = sheet.appendChild(document.createElement("h3"))
-        h3.classList.add("sheet__title")
+        const h3 = document.querySelector(".sheet .sheet__title")
         h3.innerText = item.name
 // Création des éléments nécessaires pour afficher la photo de l'article
-        const divImg = sheet.appendChild(document.createElement("div")) // On créer l'élément contenant l'image de l'item sous forme de div
-        divImg.classList.add("sheet__img") // On lui donne une classe
-        const img = divImg.appendChild(document.createElement("img")) // On créer l'élément <img>
+        const img = document.querySelector(".sheet .sheet__img img")
         img.setAttribute("src", item.imageUrl) // On lui donne la source de l'image
         img.setAttribute("alt", item.name) // On lui donne l'attribut a renseigner pour l'image, ici le nom de l'appareil
 // Création du paragraphe contenant la description de l'article
-        const specs = sheet.appendChild(document.createElement("p"))
-        specs.classList.add("sheet__specs")
+        const specs = document.querySelector(".sheet .sheet__specs")
         specs.innerText = item.description
 // Création du formulaire de choix de la lentille 
-    // Création de la légende de l'interface "select"
-        const label = sheet.appendChild(document.createElement("label"))
-        label.setAttribute("for", "lenses-select")
-        label.classList.add("sheet__label")
-        label.innerText = "Choix de la lentille"
-    // Création de la séléction de la lentille 
-        const select = sheet.appendChild(document.createElement("select"))
-        select.setAttribute("name", "lenses")
-        select.setAttribute("id", "lenses-select")
-        select.classList.add("sheet__form")
-        const choice = select.appendChild(document.createElement("option"))
-        choice.setAttribute("value", "")
-        choice.innerText ="--Merci de selectionner la lentille désirée--"
+    // Création de la séléction de la lentille
+        const select = document.getElementById("lenses-select")
         for (let i = 0; i < item.lenses.length; i++) {
             const lense = item.lenses[i]
             const option = select.appendChild(document.createElement("option"))
