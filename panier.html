@@ -1,11 +1,97 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oricamera - Votre panier</title>
+    <meta name="description" content="Oricameras vous propose une sélection unique de caméra vintage">
+    <!--A MODIFIER PAR JS-->
+
+    <meta property="og:title" content="Oricameras" />
+    <!--A MODIFIER PAR JS-->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.hugohemon.fr" />
+    <!--A MODIFIER PAR JS-->
+    <meta property="og:image" content="favicon.ico" />
+
+    <meta property="og:description" content="Oricameras vous propose une sélection unique de caméra vintage" />
+    <!--A MODIFIER PAR JS-->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Oricameras">
+    <!--A MODIFIER PAR JS-->
+    <meta name="twitter:description" content="Oricameras vous propose une sélection unique de caméra vintage">
+    <!--A MODIFIER PAR JS-->
+    <meta name="twitter:creator" content="@EmonUgo">
+    <meta name="twitter:image" content="favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="public/css/prefixed/style.css">
+    <title>Oricameras - Votre panier</title>
 </head>
+
 <body>
-    
+    <div id="content">
+
+        <header>
+            <nav>
+
+            </nav>
+
+            <h1>
+                Oricameras
+            </h1>
+            <p>
+                Une sélection d'appareils photo vintage !
+            </p>
+        </header>
+
+        <section id="main">
+            <h2>
+                Votre panier
+            </h2>
+            <table>
+                <caption>Contenu de votre panier</caption>
+                <tr>
+                    <td>Produit</td>
+                    <td>Prix</td>
+                </tr>
+                <tr>
+                   <!-- <td>Caméra 1</td>
+                    <td>50 €</td>-->
+                </tr>
+                <tfoot>
+                    <td>Total</td>
+                </tfoot>
+            </table>
+            <p>
+                Pour valider votre commande merci de remplir le formulaire :
+            </p>
+            <form action="http://localhost:3000/api/cameras/order" method="POST">
+                <label for="firstname">Nom :</label>
+                <input type="text" name="firstname" id="firstname" required>
+                <br>
+                <label for="secondname">Prénom :</label>
+                <input type="text" name="secondname" id="secondname" required>
+                <br>
+                <label for="adress">Adresse :</label>
+                <textarea name="adress" id="adress" cols="25" rows="5" required></textarea>
+                <br>
+                <label for="town">Ville:</label>
+                <input type="text" name="town" id="town" required>
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+                <br>
+                <input type="submit">
+            </form>
+        </section>
+
+        <footer>
+            HUGO HEMON
+        </footer>
+
+    </div>
+    <div class="bg bg__fixed bg__fixed--panier"></div>
+    <script type="module" src=""></script>
 </body>
+
 </html>

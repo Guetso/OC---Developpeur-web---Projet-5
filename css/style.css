@@ -69,6 +69,9 @@ a {
 .bg__fixed--produit {
   background-image: url(../../img/topillustrationProduct.jpg);
 }
+.bg__fixed--panier {
+  background-image: url(../../img/topillustrationPanier.jpg);
+}
 
 ul {
   display: flex;
@@ -145,6 +148,19 @@ body #content .error {
 }
 .sheet__form {
   margin-left: 1rem;
+}
+
+#main table {
+  border: solid 1px;
+  border-collapse: collapse;
+}
+#main table td {
+  border: solid 1px;
+  width: 50vw;
+  text-align: center;
+}
+#main table tr {
+  border: solid 1px;
 }
 
 /*# sourceMappingURL=style.css.map */
