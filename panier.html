@@ -48,20 +48,31 @@
             <h2>
                 Votre panier
             </h2>
-            <table>
+            <table id="table">
                 <caption>Contenu de votre panier</caption>
-                <tr>
-                    <td>Produit</td>
-                    <td>Prix</td>
-                </tr>
-                <tr>
-                   <!-- <td>Caméra 1</td>
-                    <td>50 €</td>-->
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Article</th>
+                        <th>Lentille</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+
+                <tbody id="cart-tablebody">
+
+                </tbody>
+
                 <tfoot>
-                    <td>Total</td>
+                    <tr>
+                        <th>Montant total du panier :</th>
+                        <th id="subtt"> 0 €</th>
+                    </tr>
                 </tfoot>
+
             </table>
+            <button id="empty">Vider mon panier</button>
             <p>
                 Pour valider votre commande merci de remplir le formulaire :
             </p>
@@ -91,7 +102,7 @@
 
     </div>
     <div class="bg bg__fixed bg__fixed--panier"></div>
-    <script type="module" src=""></script>
+    <script type="module" src="panier.js"></script>
 </body>
 
 </html>

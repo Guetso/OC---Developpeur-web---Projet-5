@@ -46,13 +46,16 @@
 
         <section id="main">
             <h2>Votre choix</h2>
+
             <article class="sheet">
                 <h3 class="sheet__title"></h3>
                 <div class="sheet__img">
                     <img src="" alt="">
                 </div>
                 <p class="sheet__specs"></p>
+                <p class="sheet__id"></p>
             </article>
+
             <form id="sheet__form" method="GET" action="panier.html">
                 <label for="lenses-select">Choix de la lentille</label>
                 <br>
@@ -60,8 +63,19 @@
                     <option value="">--Merci de choisir la lentille désirée</option>
                 </select>
                 <br>
-                <button>Ajouter au panier</button>
+
+                <label for="price">Prix</label>
+                <p type="text" id="price"></p>
+                <br>
+
+                <label for="qte">Quantité</label>
+                <br>
+                <input type="number" id="qte"></input>
+                <br>
+                
+                <button id="btn">Ajouter au panier</button>
             </form>
+
         </section>
 
         <footer>
