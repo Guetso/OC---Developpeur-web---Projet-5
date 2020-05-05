@@ -1,3 +1,4 @@
+import { get } from "./config.js"
 //// Récupérer les infos du session storage qui contiennent l'article à ajouter au panier
 
 (function () { /// La fonction s'exécute dès le chargement de la page
@@ -11,45 +12,54 @@
     }
 })()
 
-///// Ajouter les objets du localStorage dans un tableau "cart"
+////////
+
+const store = []
+
+class Camera {
+    constructor(Id, Name, Price, Lenses) {
+        this.id = Id;
+        this.name = Name;
+        this.price = Price;
+        this.lenses = Lenses
+    }
+}
+
+get("http://localhost:3000/api/cameras/").then(function (response) {
+    for (let i = 0; i < response.length; i++) {
+        let newCamera = new Camera(
+            response[i]._id,
+            response[i].name,
+            response[i].price,
+            response[i].lenses
+        )
+        store.push(newCamera)
+    }
+    console.log(store)
+})
 
 const cart = []
 
-for (let i = 0; i < localStorage.length; i++) {
-    const storageItem = JSON.parse(localStorage.getItem(i))
-    cart.push(storageItem)
+class Cartline {
+    constructor (Name, Lense, Qty, Price, Subtotal) {
+        this.name = Name;
+        this.lense = Lense;
+        this.qty = Qty;
+        this.price = Price;
+        this.subtotal = Subtotal
+    }
 }
 
-/////
-
-function compare(a, b) {
-    if (a._id < b._id)
-        return -1;
-    if (a._id > b._id)
-        return 1;
-    return 0;
+function addCartLine (){
+    if (localStorage.getItem(0)===null) {
+        console.log("Pas de nouvel article")
+    }
 }
 
-cart.sort(compare)
-
-//
-
-function cleanArray(array) {
-    var i, j, len = array.length, out = [], obj = {};
-    for (i = 0; i < len; i++) {
-      obj[array[i]._id] = 0;
-    }
-    for (j in obj) {
-      out.push(j);
-    }
-    return out;
-  }
-  
-  const newCart = cleanArray(cart)
-  console.log(newCart)
+/*SUITE A DEBLOQUER
 
 /////
-console.log(cart)
+ console.log(cart)
 // Mise en forme du panier
 let counter = 0
 for (let i = 0; i < cart.length; i++) {
@@ -138,3 +148,5 @@ form.addEventListener("submit", function (event) { // Au moment du la soumission
         }
     };
 });
+
+*/

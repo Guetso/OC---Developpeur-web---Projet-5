@@ -46,19 +46,14 @@ const createItem = function () { // On créé une fonction qui va récupérer le
 
 const submit = document.getElementById("btn")
 const id = document.querySelector(".sheet__id")
-const name = document.querySelector(".sheet__title")
 const lense = document.getElementById("lenses-select")
-const price = document.getElementById("price")
 const qte = document.getElementById("qte")
-const total = 0
 
 submit.addEventListener("click", function (event) {
         //event.preventDefault()
         const order = {
-                name: name.textContent,
                 _id: id.innerText,
                 lense: lense.value,
-                price: price.textContent,
                 qte: qte.value,
         }     
  const stringOrder = JSON.stringify(order)
