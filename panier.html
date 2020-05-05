@@ -76,18 +76,18 @@
             <p>
                 Pour valider votre commande merci de remplir le formulaire :
             </p>
-            <form action="http://localhost:3000/api/cameras/order" method="POST">
-                <label for="firstname">Nom :</label>
+            <form id="form">
+                <label for="firstname">Prénom :</label>
                 <input type="text" name="firstname" id="firstname" required>
                 <br>
-                <label for="secondname">Prénom :</label>
-                <input type="text" name="secondname" id="secondname" required>
+                <label for="lastname">Nom :</label>
+                <input type="text" name="secondname" id="lastname" required>
                 <br>
-                <label for="adress">Adresse :</label>
-                <textarea name="adress" id="adress" cols="25" rows="5" required></textarea>
+                <label for="address">Adresse :</label>
+                <textarea name="address" id="address" cols="25" rows="5" required></textarea>
                 <br>
-                <label for="town">Ville:</label>
-                <input type="text" name="town" id="town" required>
+                <label for="city">Ville:</label>
+                <input type="text" name="town" id="city" required>
                 <br>
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="email" required>

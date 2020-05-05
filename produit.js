@@ -32,7 +32,7 @@ const createItem = function () { // On créé une fonction qui va récupérer le
                 }
                 // Ajout du prix
                 const price = document.getElementById("price")
-                const itemPrice = ((item.price) / 100) + ",00"
+                const itemPrice = ((item.price) / 100)
                 price.innerText = itemPrice + " €"
 
         }).catch(function (error) {// Si la requête Xhr échoue, on transmet un message d'erreur et on indique qu'un problème à eu lieu lors de la requête
@@ -56,17 +56,18 @@ submit.addEventListener("click", function (event) {
         //event.preventDefault()
         const order = {
                 name: name.textContent,
-                id: id.innerText,
+                _id: id.innerText,
                 lense: lense.value,
-                price: parseInt(price.textContent),
-                qte: parseInt(qte.value),
-                total : parseInt(price.textContent) * parseInt(qte.value)
+                price: price.textContent,
+                qte: qte.value,
         }     
  const stringOrder = JSON.stringify(order)
  sessionStorage.setItem("newOrder",stringOrder)
+ console.log(sessionStorage.getItem("newOrder"))
 })
 
 createItem()
+
 
 
 
