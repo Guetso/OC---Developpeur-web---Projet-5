@@ -150,16 +150,16 @@ body #content .error {
   margin-left: 1rem;
 }
 
-#main table {
+#main #table {
   border: solid 1px;
   border-collapse: collapse;
 }
-#main table td {
+#main #table td {
   border: solid 1px;
   width: 50vw;
   text-align: center;
 }
-#main table tr {
+#main #table tr {
   border: solid 1px;
 }
 

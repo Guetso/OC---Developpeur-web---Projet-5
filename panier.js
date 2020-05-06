@@ -14,8 +14,6 @@ import { get } from "./config.js"
 
 ////////
 
-const store = []
-
 class Camera {
     constructor(Id, Name, Price, Lenses) {
         this.id = Id;
@@ -25,42 +23,131 @@ class Camera {
     }
 }
 
-get("http://localhost:3000/api/cameras/").then(function (response) {
-    for (let i = 0; i < response.length; i++) {
-        let newCamera = new Camera(
-            response[i]._id,
-            response[i].name,
-            response[i].price,
-            response[i].lenses
-        )
-        store.push(newCamera)
+class Cartline {
+    constructor(Name, Lense, Qte, Price) {
+        this.name = Name;
+        this.lense = Lense;
+        this.qte = Qte;
+        this.price = Price;
+        this.subtotal = parseInt(this.qte) * parseInt(this.price)
     }
-    console.log(store)
-})
+}
+
+
+const store = []
 
 const cart = []
 
-class Cartline {
-    constructor (Name, Lense, Qty, Price, Subtotal) {
-        this.name = Name;
-        this.lense = Lense;
-        this.qty = Qty;
-        this.price = Price;
-        this.subtotal = Subtotal
+
+function cleanArray(array) {
+    var i, j, len = array.length, out = [], obj = {}
+    for (i = 0; i < len; i++) {
+        obj[array[i]._id + "_" + array[i].lense] = 0
     }
+    for (j in obj) {
+        out.push(j)
+    }
+    return out
 }
 
-function addCartLine (){
-    if (localStorage.getItem(0)===null) {
-        console.log("Pas de nouvel article")
+function countQte(arr, list) {
+    let counter = 0
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i]._id === (list.split("_")[0]) && arr[i].lense === (list.split("_")[1])) {
+            counter = counter + parseInt(arr[i].qte)
+        }
     }
-}
-
-/*SUITE A DEBLOQUER
+    return counter
+}//(response[i].id.split("_"))[1]
 
 /////
- console.log(cart)
+
+get("http://localhost:3000/api/cameras/").then(function (response) {
+   
+    return new Promise(function (resolve, reject) {
+        for (let i = 0; i < response.length; i++) {
+            for (let y = 0; y < response[i].lenses.length; y++) {
+                let newCamera = new Camera(
+                    response[i]._id + "_" + response[i].lenses[y],
+                    response[i].name,
+                    response[i].price,
+                    response[i].lenses
+                )
+                store.push(newCamera)
+            }
+        }
+      
+        resolve(store)
+    }).then(function addCartLine(response) {
+
+        const rawOrder = []
+        for (let i = 0; i < localStorage.length; i++) {
+            const storageItem = JSON.parse(localStorage.getItem(i))
+            rawOrder.push(storageItem)
+        }
+        
+
+        const cleanOrder = cleanArray(rawOrder)
+
+        cleanOrder.forEach(function (element) {
+            for (let i = 0; i < response.length; i++) {
+                if (response[i].id === element) {
+                    let newCartline = new Cartline(
+                        response[i].name,
+                        (response[i].id.split("_"))[1],
+                        countQte(rawOrder, element),
+                        response[i].price,
+                    )
+                    cart.push(newCartline)
+                    return newCartline
+                }
+            }
+        })
+    })
+}).catch(function (error) {
+    console.error("erreur lors du chargement du panier.", error)
+})
+
+
+
+
+
+
+
+
+/*
+function addCartLine() {
+
+
+    const rawOrder = []
+    for (let i = 0; i < localStorage.length; i++) {
+        const storageItem = JSON.parse(localStorage.getItem(i))
+        rawOrder.push(storageItem)
+    }
+    const orderId = cleanArray(rawOrder)
+    for (let element in orderId) {
+        for (let i = 0; i < store.length; i++) {
+            if (store[i]._id === orderId[element]) {
+                let newCartline = new Cartline(
+                    store[i].name,
+                    storageItem[i].lense,
+                    storageItem[i].qte,
+                    store[i].price
+                )
+                return newCartline
+            }
+        }
+    }
+
+}
+*/
+
+
+
+/////
+
 // Mise en forme du panier
+console.log(cart)
 let counter = 0
 for (let i = 0; i < cart.length; i++) {
 
@@ -149,4 +236,3 @@ form.addEventListener("submit", function (event) { // Au moment du la soumission
     };
 });
 
-*/
