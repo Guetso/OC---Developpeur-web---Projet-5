@@ -24,7 +24,8 @@ class Camera {
 }
 
 class Cartline {
-    constructor(Name, Lense, Qte, Price) {
+    constructor(Id,Name, Lense, Qte, Price) {
+        this.id = Id ;
         this.name = Name;
         this.lense = Lense;
         this.qte = Qte;
@@ -93,6 +94,7 @@ get("http://localhost:3000/api/cameras/").then(function (response) {
             for (let i = 0; i < response.length; i++) {
                 if (response[i].id === element) {
                     let newCartline = new Cartline(
+                        response[i].id,
                         response[i].name,
                         (response[i].id.split("_"))[1],
                         countQte(rawOrder, element),
@@ -218,7 +220,7 @@ form.addEventListener("submit", function (event) { // Au moment du la soumission
 
     const products = []
     for (let i = 0; i < cart.length; i++) {
-        products.push(cart[i]._id)
+        products.push(cart[i].id)
     }
 
     const data = { contact, products }
