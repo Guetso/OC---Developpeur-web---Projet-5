@@ -63,7 +63,7 @@ function countQte(arr, list) {
 /////
 
 get("http://localhost:3000/api/cameras/").then(function (response) {
-   
+
     return new Promise(function (resolve, reject) {
         for (let i = 0; i < response.length; i++) {
             for (let y = 0; y < response[i].lenses.length; y++) {
@@ -76,7 +76,7 @@ get("http://localhost:3000/api/cameras/").then(function (response) {
                 store.push(newCamera)
             }
         }
-      
+
         resolve(store)
     }).then(function addCartLine(response) {
 
@@ -85,7 +85,7 @@ get("http://localhost:3000/api/cameras/").then(function (response) {
             const storageItem = JSON.parse(localStorage.getItem(i))
             rawOrder.push(storageItem)
         }
-        
+
 
         const cleanOrder = cleanArray(rawOrder)
 
@@ -103,6 +103,37 @@ get("http://localhost:3000/api/cameras/").then(function (response) {
                 }
             }
         })
+    }).then(function () {
+        let counter = 0
+        for (let i = 0; i < cart.length; i++) {
+
+            const tbody = document.getElementById("cart-tablebody")
+            const tr = document.createElement("tr")
+            tbody.appendChild(tr)
+            const td1 = document.createElement("td")
+            const td2 = document.createElement("td")
+            const td3 = document.createElement("td")
+            const td4 = document.createElement("td")
+            const td5 = document.createElement("td")
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+            tr.appendChild(td3)
+            tr.appendChild(td4)
+            tr.appendChild(td5)
+
+            const cartLine = cart[i]
+            td1.innerText = cartLine.name
+            td2.innerText = cartLine.lense
+            td3.innerText = ((cartLine.price)/100) + " €"
+            td4.innerText = cartLine.qte
+            td5.innerText = ((cartLine.subtotal)/100)+" €"
+
+            //// Fonction de calcul du total du panier
+            counter = counter + (parseInt(cartLine.subtotal/100))
+            const subtt = document.getElementById("subtt")
+            subtt.innerText = counter + " €"
+
+        }
     })
 }).catch(function (error) {
     console.error("erreur lors du chargement du panier.", error)
@@ -148,36 +179,7 @@ function addCartLine() {
 
 // Mise en forme du panier
 console.log(cart)
-let counter = 0
-for (let i = 0; i < cart.length; i++) {
 
-    const tbody = document.getElementById("cart-tablebody")
-    const tr = document.createElement("tr")
-    tbody.appendChild(tr)
-    const td1 = document.createElement("td")
-    const td2 = document.createElement("td")
-    const td3 = document.createElement("td")
-    const td4 = document.createElement("td")
-    const td5 = document.createElement("td")
-    tr.appendChild(td1)
-    tr.appendChild(td2)
-    tr.appendChild(td3)
-    tr.appendChild(td4)
-    tr.appendChild(td5)
-
-    const cartLine = cart[i]
-    td1.innerText = cartLine.name
-    td2.innerText = cartLine.lense
-    td3.innerText = cartLine.price
-    td4.innerText = cartLine.qte
-    td5.innerText = (parseInt(cartLine.price) * parseInt(cartLine.qte)) + " €"
-
-    //// Fonction de calcul du total du panier
-    counter = counter + (parseInt(cartLine.price) * parseInt(cartLine.qte))
-    const subtt = document.getElementById("subtt")
-    subtt.innerText = counter + " €"
-
-}
 
 ////// Fonction de RAZ du panier
 
