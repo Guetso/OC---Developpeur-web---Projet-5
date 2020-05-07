@@ -1,4 +1,8 @@
-import { get } from "./config.js"
+import { get } from "./config.js" // Importation de la requête AJAX
+
+/////////////////////
+
+// Fonction de création de la page en fonction du produit choisi
 
 const createItem = function () { // On créé une fonction qui va récupérer les informations du produit en question et les afficher dans la page
         
@@ -7,7 +11,7 @@ const createItem = function () { // On créé une fonction qui va récupérer le
         const url = "http://localhost:3000/api/cameras/" + id // L'URL chargée sera celle correspondant à l'id du produit
 
         get(url).then(function (response) { // Elle fera appel à la fonction get avec l'URL appropriée, la fonction get contenant une promesse, on lui indique quoi faire en cas de succès de la requête
-                const item = response//Si la requête Xrh aboutie, il faudra créer une constante "item", qui sera la réponse de la promesse regroupant ainsi les différents modèle de caméra dans un array
+                const item = response//Si la requête Xrh aboutie, il faudra créer une constante "item", qui sera la réponse de la promesse à savoir les informations du produit demandé
                 // Création du titre contenant le nom de l'article
                 const h3 = document.querySelector(".sheet .sheet__title")
                 h3.innerText = item.name
@@ -44,6 +48,8 @@ const createItem = function () { // On créé une fonction qui va récupérer le
         })
 }
 
+// Ajout d'un écouteur d'événement sur le clique du formulaire, permettant d'ajouter le produit au panier et chargeant la page panier.htmls
+
 const submit = document.getElementById("btn")
 const id = document.querySelector(".sheet__id")
 const lense = document.getElementById("lenses-select")
@@ -51,17 +57,17 @@ const qte = document.getElementById("qte")
 
 submit.addEventListener("click", function (event) {
         //event.preventDefault()
-        const order = {
-                _id: id.innerText,
-                lense: lense.value,
-                qte: qte.value,
+        const order = {                       // Au moment du clique sur le bouton : création d'une constante "order" 
+                _id: id.innerText,                     //qui contient l'id du produit
+                lense: lense.value,                    //la valeur de la lentille selectionnée
+                qte: qte.value,                         // la quantité voulue
         }     
- const stringOrder = JSON.stringify(order)
- sessionStorage.setItem("newOrder",stringOrder)
- console.log(sessionStorage.getItem("newOrder"))
+ const stringOrder = JSON.stringify(order)      // On transforme cet objet en chaine de caractère
+ sessionStorage.setItem("newOrder",stringOrder) // Qu'on va stocker dans le "session storage" du navigateur et qu'on nomme "newOrder"
 })
 
-createItem()
+
+createItem() // On appel la fonction pour créer notre page produit
 
 
 
