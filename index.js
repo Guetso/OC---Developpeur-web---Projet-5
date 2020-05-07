@@ -1,7 +1,8 @@
 import { get } from "./config.js" // Importation de la requête AJAX
+import { environment } from "./config.js"
 
 const createList = function () { // On créé une fonction qui va récupérer les différents items de caméra dans l'API pour construire la liste des produits
-    get("http://localhost:3000/api/cameras/").then(function (response) { // Elle fera appel à la fonction get avec l'URL appropriée, la fonction get contenant une promesse, on lui indique quoi faire en cas de succès de la requête
+    get(environment + "/api/cameras/").then(function (response) { // Elle fera appel à la fonction get avec l'URL appropriée, la fonction get contenant une promesse, on lui indique quoi faire en cas de succès de la requête
         const items = response//Si la requête Xrh aboutie, il faudra créer une constante "items", qui sera la réponse de la promesse regroupant ainsi les différents modèle de caméra dans un tableau
         const ul = document.getElementById("items") // On accède à l'élément "ul" de l'index.html
         for (let i = 0; i < items.length; i++) { // Pour chaque classe du tableau "items"
@@ -22,9 +23,9 @@ const createList = function () { // On créé une fonction qui va récupérer le
             h3.innerText = item.name
 
             const a = li.appendChild(document.createElement("a")) // On créé un lien pour accéder au détail de l'appareil et le commander
-            a.setAttribute("href","produit.html#"+item._id) // On charge la page "produit.html" + on ajoute un hash correspondant à l'id du produit demandé à l'URL
+            a.setAttribute("href", "produit.html#" + item._id) // On charge la page "produit.html" + on ajoute un hash correspondant à l'id du produit demandé à l'URL
             a.classList.add("item__btn")
-            a.innerText ="Voir ce modèle"
+            a.innerText = "Voir ce modèle"
 
         }
     }).catch(function (error) {// Si la requête Xhr échoue, on transmet un message d'erreur et on indique qu'un problème à eu lieu lors de la requête

@@ -1,5 +1,5 @@
 import { get } from "./config.js" // Importation de la requête AJAX
-
+import { environment } from "./config.js"
 /////////////////////
 
 // Fonction de création de la page en fonction du produit choisi
@@ -8,7 +8,7 @@ const createItem = function () { // On créé une fonction qui va récupérer le
         
         const hash = window.location.hash // On créé une variable "hash" qui correspond au hash de l'URL qui a été chargée par l'utilisateur
         const id = hash.replace("#", "") // On reformate le "hash" pour lui enlever le symbole "#"
-        const url = "http://localhost:3000/api/cameras/" + id // L'URL chargée sera celle correspondant à l'id du produit
+        const url = environment + "/api/cameras/" + id // L'URL chargée sera celle correspondant à l'id du produit
 
         get(url).then(function (response) { // Elle fera appel à la fonction get avec l'URL appropriée, la fonction get contenant une promesse, on lui indique quoi faire en cas de succès de la requête
                 const item = response//Si la requête Xrh aboutie, il faudra créer une constante "item", qui sera la réponse de la promesse à savoir les informations du produit demandé

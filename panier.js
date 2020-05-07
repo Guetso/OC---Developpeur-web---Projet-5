@@ -1,5 +1,5 @@
 import { get } from "./config.js" // Importation de la requête AJAX
-
+import { environment } from "./config.js"
 /////////////////////
 
 // On met en place une fonction qui s'auto exécute et qui vérifie si le session storage contient un objet "newOrder"
@@ -77,7 +77,7 @@ function countQte(arr, list) {              //Cette fonction prend en paramètre
 function post(toSend) {
     return new Promise(function (resolve, reject) {
         const httpRequest = new XMLHttpRequest()
-        httpRequest.open("POST", "http://localhost:3000/api/cameras/order")
+        httpRequest.open("POST", environment + "/api/cameras/order")
         httpRequest.setRequestHeader("Content-Type", "application/json")
         httpRequest.send(JSON.stringify(toSend))
         httpRequest.onreadystatechange = function () {

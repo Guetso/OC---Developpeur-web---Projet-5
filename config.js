@@ -1,3 +1,5 @@
+const environment = "http://localhost:3000"
+
 const get = function (url) { // On créé une fonction qui permet d'utiliser la méthode GET sur une URL donnée
     return new Promise(function (resolve, reject) { // Cette fonction retournera une promesse qui fera :
         const httpRequest = new XMLHttpRequest() // La fonction va créer une requête Http
@@ -15,5 +17,5 @@ const get = function (url) { // On créé une fonction qui permet d'utiliser la 
     })
 }
 
-
+export { environment }
 export { get }
