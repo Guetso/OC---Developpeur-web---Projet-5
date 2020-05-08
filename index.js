@@ -12,15 +12,15 @@ const createList = function () { // On créé une fonction qui va récupérer le
             const li = ul.appendChild(document.createElement("li")) // On ajoute un élément enfant "li" dans "ul"
             li.classList.add("item") // On lui donne une classe
 
+            const h3 = li.appendChild(document.createElement("h3")) // On créé l'élément h3 qui contiendra le nom de l'appareil
+            h3.classList.add("item__title")
+            h3.innerText = item.name
+
             const divImg = li.appendChild(document.createElement("div")) // On créer l'élément contenant l'image de l'item sous forme de div
             divImg.classList.add("item__img") // On lui donne une classe
             const img = divImg.appendChild(document.createElement("img")) // On créer l'élément <img>
             img.setAttribute("src", item.imageUrl) // On lui donne la source de l'image
             img.setAttribute("alt", item.name) // On lui donne l'attribut a renseigner pour l'image, ici le nom de l'appareil
-
-            const h3 = li.appendChild(document.createElement("h3")) // On créé l'élément h3 qui contiendra le nom de l'appareil
-            h3.classList.add("item__title")
-            h3.innerText = item.name
 
             const a = li.appendChild(document.createElement("a")) // On créé un lien pour accéder au détail de l'appareil et le commander
             a.setAttribute("href", "produit.html#" + item._id) // On charge la page "produit.html" + on ajoute un hash correspondant à l'id du produit demandé à l'URL

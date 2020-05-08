@@ -21,6 +21,8 @@
     <link rel="canonical" href="https://www.hugohemon.fr/projet5">
     <link rel="stylesheet" type="text/css" href="public/css/prefixed/style.css">
 
+    <script src="https://kit.fontawesome.com/836800d8d5.js" crossorigin="anonymous"></script>
+
     <title>Oricameras</title>
 </head>
 
@@ -29,7 +31,27 @@
 
         <header>
             <nav>
-
+                <div id="navpanel" class="menu menu--hidden">
+                    <a class="close" href="#navpanel">
+                        <i class="fas fa-times"></i>
+                    </a>
+                    <ul class="menu__list">
+                        <a href="index.html"><li>Notre sélection</li></a>
+                        <a href="panier.html"><li>Votre panier</li></a>
+                        <div class="menu__social">
+                            <a class="menu__social__item fab fa-twitter" href="#"></a>
+                            <a class="menu__social__item fab fa-facebook-f" href="#"></a>
+                            <a class="menu__social__item fab fab fa-instagram" href="#"></a>
+                            <a class="menu__social__item fab fa-github" href="#"></a>
+                        </div>
+                    </ul>
+                </div>
+                <div class="menu menu__btn menu__btn--hover">
+                    <a class="open" href="#navpanel">
+                        <i class="fas fa-bars"></i>
+                        <p>Menu</p>
+                    </a>
+                </div>
             </nav>
 
             <h1>
@@ -48,17 +70,20 @@
                 Retrouvez ci dessous tous les modèles que nous proposons :
             </p>
             <ul id="items">
- 
+
             </ul>
         </section>
 
         <footer>
-            HUGO HEMON
+            <ul>
+                <li>&#169 HUGO HEMON</li>
+            </ul>
         </footer>
 
     </div>
     <div class="bg bg__fixed bg__fixed--index"></div>
     <script type="module" src="index.js"></script>
+    <script type="module" src="anim.js"></script>
 </body>
 
 </html>
