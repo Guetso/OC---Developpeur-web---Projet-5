@@ -56,6 +56,9 @@ body footer {
   font-weight: 900;
   color: #fff;
 }
+.menu__btn--solid {
+  color: black;
+}
 .menu__list {
   color: #212931;
 }
@@ -232,15 +235,28 @@ ul {
 }
 .menu__btn {
   position: fixed;
+  top: 1rem;
+  transition: color 200ms ease-in-out, background-color 200ms ease-in-out, box-shadow 200ms ease-in-out, opacity 200ms ease-in-out;
   margin-right: 5vw;
-  transition: color 200ms ease-in-out;
+  padding: 0 0.8rem 0 0.8rem;
+  background-color: none;
+  box-shadow: 0;
+  opacity: 1;
 }
 .menu__btn:hover {
   color: #18bfef;
 }
+.menu__btn--solid {
+  background-color: #fff;
+  box-shadow: 0 0.125rem 0.75rem 0 rgba(30, 37, 45, 0.25);
+  opacity: 0.8;
+}
 .menu__btn .open {
   display: flex;
   align-items: center;
+}
+.menu__btn .open p {
+  margin: 0;
 }
 .menu__btn .open .fa-bars {
   margin-right: 0.5em;
