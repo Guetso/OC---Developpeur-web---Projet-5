@@ -303,6 +303,10 @@ ul {
 }
 .sheet__specs {
   padding: 1rem;
+  text-align: justify;
+}
+.sheet__id {
+  text-align: center;
 }
 .sheet__img img {
   width: 100vw;
