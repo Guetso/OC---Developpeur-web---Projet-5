@@ -123,9 +123,8 @@ get("http://localhost:3000/api/cameras/").then(function (response) { // Avec la 
             const storageItem = JSON.parse(localStorage.getItem(i))
             rawOrder.push(storageItem)                              // Le rawOrder pouvant contenir des lignes de commande contenant le même article (même caméra + même lentille) il va falloir le nettoyer pour additionner les lignes similaires.
         }
-
+        
         const cleanOrder = cleanArray(rawOrder)                     // On fait appel à la fonction "CleanArray" qui va créer une liste des identifiants uniques de rawOrder
-
         cleanOrder.forEach(function (line) {                        // Pour chacun de ces identifiants uniques : on va le comparer avec notre magasin
             for (let i = 0; i < store.length; i++) {                // On demande pour chaque article présent dans la magasin
                 if (store[i].id === line) {                         // Si on trouve une correspondance entre l'id d'un article du magasin et l'id de notre liste de commande
@@ -230,6 +229,4 @@ form.addEventListener("submit", function (event) { // Au moment du la soumission
         console.error("Erreur lors de l'envoi des données: " + error)
     })
 })
-
-
 

@@ -70,6 +70,11 @@ body footer {
   letter-spacing: 0.075em;
 }
 
+.sheet__id {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
 body {
   background-color: #bababa;
   margin: 0;
@@ -298,15 +303,40 @@ ul {
   border: solid 2px #18bfef;
 }
 
+.sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .sheet__title {
   text-align: center;
+  margin-bottom: 0;
 }
 .sheet__specs {
   padding: 1rem;
-  text-align: justify;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sheet__specs::before {
+  border-top: solid 2px #b6b6b6;
+  content: "";
+  display: inline-block;
+  width: 20%;
+  margin-bottom: 2rem;
+}
+.sheet__specs::after {
+  border-top: solid 2px #b6b6b6;
+  content: "";
+  display: inline-block;
+  width: 20%;
+  margin-top: 2rem;
 }
 .sheet__id {
   text-align: center;
+  line-height: 1rem;
+  margin-top: 0;
 }
 .sheet__img img {
   width: 100vw;
@@ -316,7 +346,14 @@ ul {
   padding: 1rem;
 }
 .sheet__form {
-  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+.sheet__form div {
+  border: solid 1px black;
+  margin: 1rem 0;
 }
 
 #main #table {
