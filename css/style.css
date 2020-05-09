@@ -282,6 +282,24 @@ ul {
 .menu__list li {
   transition: color 200ms ease-in-out;
 }
+.menu__list li div {
+  padding: 0.5rem;
+}
+.menu__list li div .fa-facebook-f {
+  letter-spacing: 0.341em;
+}
+.menu__list li div a {
+  margin: 0.5rem;
+  box-shadow: inset 0 0 0 2px #eeeeee;
+  border-radius: 100%;
+  padding: 0.5rem;
+  text-align: center;
+  transition: color 200ms ease-in-out, box-shadow 200ms ease-in-out;
+}
+.menu__list li div a:hover {
+  color: #18bfef;
+  box-shadow: inset 0 0 0 2px #18bfef;
+}
 .menu__list li:hover {
   color: #18bfef;
 }
@@ -290,24 +308,6 @@ ul {
   content: "";
   display: inline-block;
   width: 80%;
-}
-.menu__social {
-  padding: 0.5rem;
-}
-.menu__social .fa-facebook-f {
-  letter-spacing: 0.341em;
-}
-.menu__social__item {
-  margin: 0.5rem;
-  box-shadow: inset 0 0 0 2px #eeeeee;
-  border-radius: 100%;
-  padding: 0.5rem;
-  text-align: center;
-  transition: color 200ms ease-in-out, box-shadow 200ms ease-in-out;
-}
-.menu__social__item:hover {
-  color: #18bfef;
-  box-shadow: inset 0 0 0 2px #18bfef;
 }
 .menu--active {
   transform: scaleX(1);
@@ -318,8 +318,6 @@ ul {
   transition: color 200ms ease-in-out, background-color 200ms ease-in-out, box-shadow 200ms ease-in-out, opacity 200ms ease-in-out;
   margin-right: 5vw;
   padding: 0 0.8rem 0 0.8rem;
-  background-color: none;
-  box-shadow: 0;
   opacity: 1;
 }
 .menu__btn:hover {
@@ -496,7 +494,7 @@ ul {
   margin: 2rem 0 0 0;
   line-height: 3.25rem;
   background-color: #212931;
-  border: #212931 solid 2px;
+  border: solid 2px;
   transition: background-color 200ms ease-in-out;
 }
 #main #continue:hover {
