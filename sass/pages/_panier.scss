@@ -28,6 +28,7 @@
         background-color: #fff;
         border: #212931 solid 2px;
         transition: background-color 200ms ease-in-out;
+        cursor: pointer;
         &:hover {
             background-color: #18bfef;
         }
@@ -82,6 +83,7 @@
             line-height: 3.25rem;
             background-color: #212931;
             transition: background-color 200ms ease-in-out;
+            cursor: pointer;
             &:hover {
                 background-color: #18bfef;
             }

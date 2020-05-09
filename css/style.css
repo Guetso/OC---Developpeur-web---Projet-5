@@ -456,6 +456,7 @@ ul {
   background-color: #212931;
   border: 0;
   transition: background-color 200ms ease-in-out;
+  cursor: pointer;
 }
 .sheet__form div button:hover {
   background-color: #18bfef;
@@ -484,6 +485,7 @@ ul {
   background-color: #fff;
   border: #212931 solid 2px;
   transition: background-color 200ms ease-in-out;
+  cursor: pointer;
 }
 #main #empty:hover {
   background-color: #18bfef;
@@ -539,6 +541,7 @@ ul {
   line-height: 3.25rem;
   background-color: #212931;
   transition: background-color 200ms ease-in-out;
+  cursor: pointer;
 }
 #main #form input[type=submit]:hover {
   background-color: #18bfef;
