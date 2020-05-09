@@ -99,6 +99,21 @@ body footer {
   color: #fff;
 }
 
+#table {
+  font-size: 0.8rem;
+}
+#table thead {
+  text-transform: uppercase;
+  font-family: "source-sans-pro-bold", helvetica, sans-serif;
+  color: #212931;
+}
+
+#empty {
+  text-transform: uppercase;
+  font-family: "source-sans-pro-bold", helvetica, sans-serif;
+  color: #212931;
+}
+
 body {
   background-color: #bababa;
   margin: 0;
@@ -405,22 +420,51 @@ ul {
   line-height: 3.25rem;
   background-color: #212931;
   border: 0;
+  transition: background-color 200ms ease-in-out;
 }
 .sheet__form div button:hover {
   background-color: #18bfef;
 }
 
 #main #table {
-  border: solid 1px;
-  border-collapse: collapse;
+  margin: 0 0 2rem 0;
+  border-collapse: separate;
+  width: 100%;
+  border-spacing: 0;
+}
+#main #table tbody tr:nth-child(2n+1) {
+  background-color: rgba(220, 220, 220, 0.25);
 }
 #main #table td {
-  border: solid 1px;
-  width: 50vw;
   text-align: center;
+  border: 1px solid #eeeeee;
 }
-#main #table tr {
-  border: solid 1px;
+#main #table tfoot tr th {
+  width: 10%;
+}
+#main #empty {
+  width: 100%;
+  margin: 2rem 0 2rem 0;
+  line-height: 3.25rem;
+  background-color: #fff;
+  border: #212931 solid 2px;
+  transition: background-color 200ms ease-in-out;
+}
+#main #empty:hover {
+  background-color: #18bfef;
+}
+#main #textForm {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#main #textForm::before {
+  border-top: solid 2px #b6b6b6;
+  content: "";
+  display: inline-block;
+  width: 20%;
+  margin: 0 0 1rem 0;
 }
 
 /*# sourceMappingURL=style.css.map */

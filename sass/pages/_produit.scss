@@ -75,6 +75,7 @@
                 line-height: 3.25rem;
                 background-color: #212931;
                 border: 0;
+                transition: background-color 200ms ease-in-out;
                 &:hover{
                     background-color: #18bfef;
                 }
