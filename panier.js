@@ -225,6 +225,7 @@ form.addEventListener("submit", function (event) { // Au moment du la soumission
         window.location.href = "confirm.html"
         const myOrder = JSON.stringify(response)      // On transforme cet objet en chaine de caractère
         sessionStorage.setItem("myOrder",myOrder)
+        localStorage.clear() 
     }).catch(function (error) {
         console.error("Erreur lors de l'envoi des données: " + error)
     })
