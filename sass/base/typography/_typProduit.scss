@@ -3,4 +3,30 @@
         font-size: 0.8rem;
         font-style: italic;
     }
+    &__form {
+        font-family: "source-sans-pro-bold", helvetica, sans-serif;
+        text-transform: uppercase;
+        div{
+            label{
+                font-size: 1.2rem;
+                letter-spacing: 0.075em;
+                font-weight: 900;
+            }
+            select{
+                font-family: "merriweather-Light", helvetica, sans-serif;
+            }
+            p{
+                font-size: 1.2rem;
+            }
+            input{
+                font-family: "merriweather-Light", helvetica, sans-serif;
+                font-size: 1.2rem;
+            }
+            button{
+                text-transform: uppercase;
+                font-family:"source-sans-pro-bold", helvetica, sans-serif ;
+                color: #fff;
+            }
+        }
+    }
 }

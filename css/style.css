@@ -74,6 +74,30 @@ body footer {
   font-size: 0.8rem;
   font-style: italic;
 }
+.sheet__form {
+  font-family: "source-sans-pro-bold", helvetica, sans-serif;
+  text-transform: uppercase;
+}
+.sheet__form div label {
+  font-size: 1.2rem;
+  letter-spacing: 0.075em;
+  font-weight: 900;
+}
+.sheet__form div select {
+  font-family: "merriweather-Light", helvetica, sans-serif;
+}
+.sheet__form div p {
+  font-size: 1.2rem;
+}
+.sheet__form div input {
+  font-family: "merriweather-Light", helvetica, sans-serif;
+  font-size: 1.2rem;
+}
+.sheet__form div button {
+  text-transform: uppercase;
+  font-family: "source-sans-pro-bold", helvetica, sans-serif;
+  color: #fff;
+}
 
 body {
   background-color: #bababa;
@@ -349,11 +373,41 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 90%;
   margin-bottom: 4rem;
 }
 .sheet__form div {
-  border: solid 1px black;
+  width: 100%;
   margin: 1rem 0;
+}
+.sheet__form div label {
+  color: #212931;
+  text-align: start;
+}
+.sheet__form div select {
+  height: 3rem;
+  width: 100%;
+  border: solid 2px #eeeeee;
+  text-align: center;
+}
+.sheet__form div p {
+  text-align: center;
+  margin: 0;
+}
+.sheet__form div input {
+  height: 3rem;
+  width: 100%;
+  border: solid 2px #eeeeee;
+  text-align: center;
+}
+.sheet__form div button {
+  width: 100%;
+  line-height: 3.25rem;
+  background-color: #212931;
+  border: 0;
+}
+.sheet__form div button:hover {
+  background-color: #18bfef;
 }
 
 #main #table {

@@ -84,23 +84,23 @@
             </article>
 
             <form id="sheet__form" class="sheet__form" method="GET" action="panier.html">
-                <div>
-                    <label for="lenses-select">Choix de la lentille : </label>
+                <div class = "sheet__form__lense">
+                    <label for="lenses-select">Choix de la lentille</label>
                     <br>
                     <select name="lenses" id="lenses-select" required>
-                        <option value="">--Merci de choisir la lentille désirée</option>
+                        <option value=""> - Lentille - </option>
                     </select>
                 </div>
-                <div>
-                    <label for="price">Prix : </label>
+                <div class = "sheet__form__price">
+                    <label for="price">Prix</label>
                     <p type="text" id="price"></p>
                 </div>
-                <div>
-                    <label for="qte">Quantité : </label>
+                <div class = "sheet__form__qte" >
+                    <label for="qte">Quantité</label>
                     <br>
-                    <input type="number" id="qte"></input>
+                    <input type="number" id="qte" min="1" max="10"></input>
                 </div>
-                <div>
+                <div class = "sheet__form__btn">
                     <button id="btn">Ajouter au panier</button>
                 </div>
             </form>

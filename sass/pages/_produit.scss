@@ -45,10 +45,40 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 90%;
         margin-bottom: 4rem;
         div{
-            border: solid 1px black;
+            width: 100%;
             margin: 1rem 0;
+            label{
+                color: #212931;
+                text-align: start;
+            }
+            select{
+                height: 3rem;
+                width: 100%;
+                border: solid 2px #eeeeee;
+                text-align: center;
+            }
+            p{
+                text-align: center;
+                margin: 0;
+            }
+            input{
+                height: 3rem;
+                width: 100%;
+                border: solid 2px #eeeeee;
+                text-align: center;
+            }
+            button{
+                width: 100%;
+                line-height: 3.25rem;
+                background-color: #212931;
+                border: 0;
+                &:hover{
+                    background-color: #18bfef;
+                }
+            }
         }
     }
 }
