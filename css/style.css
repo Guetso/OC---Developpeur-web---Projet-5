@@ -114,6 +114,12 @@ body footer {
   color: #212931;
 }
 
+#continue {
+  text-transform: uppercase;
+  font-family: "source-sans-pro-bold", helvetica, sans-serif;
+  color: #fff;
+}
+
 #form input {
   font-family: "merriweather-Light", helvetica, sans-serif;
   font-size: 1rem;
@@ -128,6 +134,19 @@ body footer {
   text-transform: uppercase;
   font-family: "source-sans-pro-bold", helvetica, sans-serif;
   color: #fff;
+}
+
+#summary h3 {
+  text-transform: uppercase;
+  font-family: "source-sans-pro-bold", helvetica, sans-serif;
+  color: #212931;
+  letter-spacing: 0.025rem;
+}
+#summary div h4 {
+  text-transform: uppercase;
+  font-family: "source-sans-pro-bold", helvetica, sans-serif;
+  color: #212931;
+  letter-spacing: 0.025rem;
 }
 
 body {
@@ -469,6 +488,18 @@ ul {
 #main #empty:hover {
   background-color: #18bfef;
 }
+#main #continue {
+  width: 100%;
+  text-align: center;
+  margin: 2rem 0 0 0;
+  line-height: 3.25rem;
+  background-color: #212931;
+  border: #212931 solid 2px;
+  transition: background-color 200ms ease-in-out;
+}
+#main #continue:hover {
+  background-color: #18bfef;
+}
 #main #textForm {
   text-align: center;
   display: flex;
@@ -501,6 +532,7 @@ ul {
   border: solid #eeeeee 2px;
 }
 #main #form input[type=submit] {
+  width: 100%;
   border: none;
   height: auto;
   margin: 2rem 0 2rem 0;
@@ -510,6 +542,26 @@ ul {
 }
 #main #form input[type=submit]:hover {
   background-color: #18bfef;
+}
+
+#summary {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+#summary h3 {
+  text-align: start;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+#summary div {
+  width: 80%;
+  margin: auto;
+}
+#summary div h4 {
+  text-align: start;
+  margin-bottom: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -32,6 +32,18 @@
             background-color: #18bfef;
         }
     }
+    #continue {
+        width: 100%;
+        text-align: center;
+        margin: 2rem 0 0 0;
+        line-height: 3.25rem;
+        background-color: #212931;
+        border: #212931 solid 2px;
+        transition: background-color 200ms ease-in-out;
+        &:hover {
+            background-color: #18bfef;
+        }
+    }
     #textForm {
         text-align: center;
         display: flex;
@@ -63,6 +75,7 @@
             border: solid #eeeeee 2px;
         }
         input[type="submit"] {
+            width: 100%;
             border: none;
             height: auto;
             margin: 2rem 0 2rem 0;
