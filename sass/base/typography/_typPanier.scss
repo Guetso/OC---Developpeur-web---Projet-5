@@ -11,3 +11,21 @@ font-size: 0.8rem;
     font-family:"source-sans-pro-bold", helvetica, sans-serif ;
     color: #212931;
 }
+
+#form {
+    input{
+        font-family: "merriweather-Light", helvetica, sans-serif;
+        font-size: 1rem;
+        letter-spacing: 0.025rem;
+    }
+    textarea{
+        font-family: "merriweather-Light", helvetica, sans-serif;
+        font-size: 1rem;
+        letter-spacing: 0.025rem;
+    }
+    input[type="submit"] {
+        text-transform: uppercase;
+        font-family:"source-sans-pro-bold", helvetica, sans-serif ;
+        color: #fff;
+    }
+}
