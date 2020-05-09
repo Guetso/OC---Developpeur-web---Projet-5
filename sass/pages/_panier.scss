@@ -3,6 +3,7 @@
         margin: 0 0 2rem 0;
         border-collapse: separate;
         width: 100%;
+        border : solid 2px #eeeeee;
         border-spacing: 0;
         tbody {
             tr:nth-child(2n + 1) {
@@ -32,6 +33,10 @@
         &:hover {
             background-color: #18bfef;
         }
+        @media all and (min-width: 981px){
+            width: 50%;
+            margin: 2rem 25%;
+        }
     }
     #continue {
         width: 100%;
@@ -43,6 +48,10 @@
         transition: background-color 200ms ease-in-out;
         &:hover {
             background-color: #18bfef;
+        }
+        @media all and (min-width: 981px){
+            width: 50%;
+            margin: 2rem 25% auto 25%;
         }
     }
     #textForm {
@@ -70,6 +79,10 @@
             border: solid #eeeeee 2px;
             margin: 2rem 0 0 0;
         }
+        @media all and (min-width: 981px){
+            width: 80%;
+            margin: auto 10%;
+        }
         textarea {
             width: 90%;
             margin: 2rem 0 0 0;
@@ -86,6 +99,10 @@
             cursor: pointer;
             &:hover {
                 background-color: #18bfef;
+            }
+            @media all and (min-width: 981px){
+                width: 50%;
+                margin: 2rem 25%;
             }
         }
     }

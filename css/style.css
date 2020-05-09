@@ -85,9 +85,10 @@ body footer {
 }
 .sheet__form div select {
   font-family: "merriweather-Light", helvetica, sans-serif;
+  font-size: 1.1rem;
 }
 .sheet__form div p {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 .sheet__form div input {
   font-family: "merriweather-Light", helvetica, sans-serif;
@@ -100,7 +101,12 @@ body footer {
 }
 
 #table {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+}
+@media all and (min-width: 981px) {
+  #table {
+    font-size: 1rem;
+  }
 }
 #table thead {
   text-transform: uppercase;
@@ -112,6 +118,7 @@ body footer {
   text-transform: uppercase;
   font-family: "source-sans-pro-bold", helvetica, sans-serif;
   color: #212931;
+  font-size: 1rem;
 }
 
 #continue {
@@ -148,6 +155,9 @@ body footer {
   color: #212931;
   letter-spacing: 0.025rem;
 }
+#summary div span {
+  font-weight: 900;
+}
 
 body {
   background-color: #bababa;
@@ -158,16 +168,38 @@ body #content {
   display: flex;
   flex-direction: column;
 }
+@media all and (min-width: 981px) {
+  body #content {
+    width: 90vw;
+    margin: auto;
+    border: none;
+  }
+}
+@media all and (min-width: 1200px) {
+  body #content {
+    width: 80vw;
+    margin: auto;
+    border: none;
+  }
+}
 body #content header {
   height: 60vh;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
 }
 body #content header nav {
   display: flex;
+  justify-self: flex-end;
   justify-content: flex-end;
+  margin-bottom: 0;
 }
 body #content header h1 {
   text-align: center;
-  margin-top: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  border: solid 5px #fff;
+  padding: 1.5rem 1.75rem;
 }
 body #content header h1 + p {
   text-align: center;
@@ -177,7 +209,7 @@ body #content section {
   flex-direction: column;
   align-items: center;
   background-color: #fff;
-  padding: 2rem 1rem 0 1rem;
+  padding: 0 1rem 0 1rem;
 }
 body #content section h2 {
   text-align: center;
@@ -246,99 +278,178 @@ ul {
 .bg__fixed--panier {
   background-image: url(../../img/topillustrationPanier.jpg);
 }
-
-.menu--hidden {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 0;
-  bottom: 0;
-  width: 80%;
-  box-sizing: content-box;
-  height: 100%;
-  background-color: #fff;
-  z-index: 1;
-  transform: scaleX(0);
-  transition: transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
-  transform-origin: 100% 0%;
-}
-.menu .close {
-  display: block;
-  width: 15%;
-  text-align: center;
-  align-self: flex-end;
-  margin-top: 1em;
-  margin-right: 1em;
-}
-.menu .close .fa-times {
-  font-weight: 900;
-  font-size: 1.25em;
-  color: #909498;
-  transition: color 200ms ease-in-out;
-}
-.menu .close .fa-times:hover {
-  color: #18bfef;
-}
-.menu__list li {
-  transition: color 200ms ease-in-out;
-}
-.menu__list li div {
-  padding: 0.5rem;
-}
-.menu__list li div .fa-facebook-f {
-  letter-spacing: 0.341em;
-}
-.menu__list li div a {
-  margin: 0.5rem;
-  box-shadow: inset 0 0 0 2px #eeeeee;
-  border-radius: 100%;
-  padding: 0.5rem;
-  text-align: center;
-  transition: color 200ms ease-in-out, box-shadow 200ms ease-in-out;
-}
-.menu__list li div a:hover {
-  color: #18bfef;
-  box-shadow: inset 0 0 0 2px #18bfef;
-}
-.menu__list li:hover {
-  color: #18bfef;
-}
-.menu__list li::after {
-  border-top: solid 2px #e6e6e6;
-  content: "";
-  display: inline-block;
-  width: 80%;
-}
-.menu--active {
-  transform: scaleX(1);
-}
-.menu__btn {
-  position: fixed;
-  top: 1rem;
-  transition: color 200ms ease-in-out, background-color 200ms ease-in-out, box-shadow 200ms ease-in-out, opacity 200ms ease-in-out;
-  margin-right: 5vw;
-  padding: 0 0.8rem 0 0.8rem;
-  opacity: 1;
-}
-.menu__btn:hover {
-  color: #18bfef;
-}
-.menu__btn--solid {
-  background-color: #fff;
-  box-shadow: 0 0.125rem 0.75rem 0 rgba(30, 37, 45, 0.25);
-  opacity: 0.8;
-}
-.menu__btn .open {
-  display: flex;
-  align-items: center;
-}
-.menu__btn .open p {
-  margin: 0;
-}
-.menu__btn .open .fa-bars {
-  margin-right: 0.5em;
+.bg__fixed--confirm {
+  background-image: url(../../img/topillustrationConfirm.jpg);
 }
 
+@media all and (min-width: 981px) {
+  nav {
+    background: rgba(255, 255, 255, 0.274);
+  }
+  nav .menu {
+    width: 100%;
+  }
+  nav .menu i {
+    display: none;
+  }
+  nav .menu__btn {
+    display: none;
+  }
+  nav .menu__list {
+    display: flex;
+    justify-content: flex-start;
+    height: 8vh;
+    margin: 0;
+    padding: 0;
+  }
+  nav .menu__list--active {
+    background-color: #fff;
+  }
+  nav .menu__list--active a {
+    color: #212931;
+    font-weight: 900;
+    transition: color 200ms ease-in-out;
+  }
+  nav .menu__list--active a:hover {
+    color: #18bfef;
+  }
+  nav .menu__list li {
+    margin-right: 2rem;
+    box-sizing: border-box;
+    height: 100%;
+    margin: 0;
+    padding: 0 2rem;
+    color: #fff;
+    transition: color 200ms ease-in-out;
+  }
+  nav .menu__list li:hover {
+    color: #18bfef;
+  }
+  nav .menu__list li a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  nav .menu__list li div {
+    height: 70%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+  nav .menu__list li div .fa-facebook-f {
+    letter-spacing: 0.433em;
+  }
+  nav .menu__list li div a {
+    display: inline;
+    margin-right: 1rem;
+    background-color: rgba(33, 41, 49, 0.699);
+    border-radius: 100%;
+    padding: 0.5rem;
+    transition: background-color 200ms ease-in-out;
+  }
+  nav .menu__list li div a:hover {
+    background-color: #212931;
+  }
+  nav .menu__list :nth-child(3) {
+    justify-self: self-end;
+    margin-left: auto;
+  }
+}
+@media all and (max-width: 980px) {
+  .menu--hidden {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    bottom: 0;
+    width: 80%;
+    max-width: 300px;
+    box-sizing: content-box;
+    height: 100%;
+    background-color: #fff;
+    z-index: 1;
+    transform: scaleX(0);
+    transition: transform 0.5s ease, box-shadow 0.5s ease, visibility 0.5s;
+    transform-origin: 100% 0%;
+  }
+  .menu .close {
+    display: block;
+    width: 15%;
+    text-align: center;
+    align-self: flex-end;
+    margin-top: 1em;
+    margin-right: 1em;
+  }
+  .menu .close .fa-times {
+    font-weight: 900;
+    font-size: 1.25em;
+    color: #909498;
+    transition: color 200ms ease-in-out;
+  }
+  .menu .close .fa-times:hover {
+    color: #18bfef;
+  }
+  .menu__list li {
+    transition: color 200ms ease-in-out;
+  }
+  .menu__list li div {
+    padding: 0.5rem;
+  }
+  .menu__list li div .fa-facebook-f {
+    letter-spacing: 0.341em;
+  }
+  .menu__list li div a {
+    margin: 0.5rem;
+    box-shadow: inset 0 0 0 2px #eeeeee;
+    border-radius: 100%;
+    padding: 0.5rem;
+    text-align: center;
+    transition: color 200ms ease-in-out, box-shadow 200ms ease-in-out;
+  }
+  .menu__list li div a:hover {
+    color: #18bfef;
+    box-shadow: inset 0 0 0 2px #18bfef;
+  }
+  .menu__list li:hover {
+    color: #18bfef;
+  }
+  .menu__list li::after {
+    border-top: solid 2px #e6e6e6;
+    content: "";
+    display: block;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    width: 80%;
+  }
+  .menu--active {
+    transform: scaleX(1);
+  }
+  .menu__btn {
+    position: fixed;
+    top: 1rem;
+    transition: color 200ms ease-in-out, background-color 200ms ease-in-out, box-shadow 200ms ease-in-out, opacity 200ms ease-in-out;
+    margin-right: 5vw;
+    padding: 0 0.8rem 0 0.8rem;
+    opacity: 1;
+  }
+  .menu__btn:hover {
+    color: #18bfef;
+  }
+  .menu__btn--solid {
+    background-color: #fff;
+    box-shadow: 0 0.125rem 0.75rem 0 rgba(30, 37, 45, 0.25);
+    opacity: 0.8;
+  }
+  .menu__btn .open {
+    display: flex;
+    align-items: center;
+  }
+  .menu__btn .open p {
+    margin: 0;
+  }
+  .menu__btn .open .fa-bars {
+    margin-right: 0.5em;
+  }
+}
 #items {
   display: flex;
   flex-direction: column;
@@ -360,6 +471,16 @@ ul {
 #items li .item__img img {
   width: 100%;
   height: auto;
+}
+@media all and (min-width: 600px) {
+  #items li .item__img {
+    width: 80%;
+  }
+}
+@media all and (min-width: 1200px) {
+  #items li .item__img {
+    width: 60%;
+  }
 }
 #items li .item__btn {
   width: 50vw;
@@ -411,8 +532,20 @@ ul {
   margin-top: 0;
 }
 .sheet__img img {
-  width: 100vw;
+  width: 100%;
   height: auto;
+}
+@media all and (min-width: 600px) {
+  .sheet__img img {
+    width: 80%;
+    margin: 0 10%;
+  }
+}
+@media all and (min-width: 1200px) {
+  .sheet__img img {
+    width: 60%;
+    margin: 0 20%;
+  }
 }
 .sheet__label {
   padding: 1rem;
@@ -438,6 +571,12 @@ ul {
   border: solid 2px #eeeeee;
   text-align: center;
 }
+@media all and (min-width: 981px) {
+  .sheet__form div select {
+    width: 80%;
+    margin: auto 10%;
+  }
+}
 .sheet__form div p {
   text-align: center;
   margin: 0;
@@ -447,6 +586,12 @@ ul {
   width: 100%;
   border: solid 2px #eeeeee;
   text-align: center;
+}
+@media all and (min-width: 981px) {
+  .sheet__form div input {
+    width: 80%;
+    margin: auto 10%;
+  }
 }
 .sheet__form div button {
   width: 100%;
@@ -459,11 +604,18 @@ ul {
 .sheet__form div button:hover {
   background-color: #18bfef;
 }
+@media all and (min-width: 981px) {
+  .sheet__form div button {
+    width: 50%;
+    margin: auto 25%;
+  }
+}
 
 #main #table {
   margin: 0 0 2rem 0;
   border-collapse: separate;
   width: 100%;
+  border: solid 2px #eeeeee;
   border-spacing: 0;
 }
 #main #table tbody tr:nth-child(2n+1) {
@@ -488,6 +640,12 @@ ul {
 #main #empty:hover {
   background-color: #18bfef;
 }
+@media all and (min-width: 981px) {
+  #main #empty {
+    width: 50%;
+    margin: 2rem 25%;
+  }
+}
 #main #continue {
   width: 100%;
   text-align: center;
@@ -499,6 +657,12 @@ ul {
 }
 #main #continue:hover {
   background-color: #18bfef;
+}
+@media all and (min-width: 981px) {
+  #main #continue {
+    width: 50%;
+    margin: 2rem 25% auto 25%;
+  }
 }
 #main #textForm {
   text-align: center;
@@ -526,6 +690,12 @@ ul {
   border: solid #eeeeee 2px;
   margin: 2rem 0 0 0;
 }
+@media all and (min-width: 981px) {
+  #main #form {
+    width: 80%;
+    margin: auto 10%;
+  }
+}
 #main #form textarea {
   width: 90%;
   margin: 2rem 0 0 0;
@@ -544,6 +714,12 @@ ul {
 #main #form input[type=submit]:hover {
   background-color: #18bfef;
 }
+@media all and (min-width: 981px) {
+  #main #form input[type=submit] {
+    width: 50%;
+    margin: 2rem 25%;
+  }
+}
 
 #summary {
   display: flex;
@@ -557,6 +733,8 @@ ul {
   margin-top: 0;
 }
 #summary div {
+  border: solid 2px black;
+  padding: 0.5rem 2rem;
   width: 80%;
   margin: auto;
 }

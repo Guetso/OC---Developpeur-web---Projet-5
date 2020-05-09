@@ -20,6 +20,12 @@
                     width: 100%;
                     height: auto;
                 }
+                @media all and (min-width: 600px){
+                    width: 80%;
+                }
+                @media all and (min-width: 1200px){
+                    width: 60%;
+                }
             }
             &__btn {
                 width: 50vw;
