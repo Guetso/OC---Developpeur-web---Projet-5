@@ -21,6 +21,11 @@ body h1 {
   text-transform: uppercase;
   letter-spacing: 0.075em;
 }
+@media all and (max-width: 400px) {
+  body h1 {
+    font-size: 2rem;
+  }
+}
 body h1 + p {
   color: #fff;
   font-family: "merriweather-Lightitalic", helvetica, sans-serif;
@@ -32,6 +37,11 @@ body h2 {
   color: #212931;
   text-transform: uppercase;
   letter-spacing: 0.075em;
+}
+@media all and (max-width: 400px) {
+  body h2 {
+    font-size: 1.5rem;
+  }
 }
 body h2 + p {
   font-family: "merriweather-Lightitalic", helvetica, sans-serif;
@@ -162,9 +172,10 @@ body footer {
 body {
   background-color: #bababa;
   margin: 0;
+  width: 100vw;
+  height: 100vh;
 }
 body #content {
-  border: solid 2px #e6e6e6;
   display: flex;
   flex-direction: column;
 }
@@ -200,6 +211,11 @@ body #content header h1 {
   margin-right: auto;
   border: solid 5px #fff;
   padding: 1.5rem 1.75rem;
+}
+@media all and (max-width: 400px) {
+  body #content header h1 {
+    padding: 0.5rem 0.75rem;
+  }
 }
 body #content header h1 + p {
   text-align: center;
@@ -243,6 +259,7 @@ body #content .error {
   font-style: italic;
   text-align: center;
   border: solid 1px;
+  margin: 2rem;
 }
 
 a {

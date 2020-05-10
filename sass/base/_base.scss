@@ -1,8 +1,9 @@
 body {
     background-color: #bababa;
     margin: 0;
+    width: 100vw;
+    height: 100vh;
     #content {
-        border: solid 2px #e6e6e6;
         display: flex;
         flex-direction: column;
         @media all and (min-width: 981px){
@@ -32,6 +33,9 @@ body {
                 margin-right: auto;
                 border: solid 5px #fff;
                 padding: 1.50rem 1.75rem;
+                @media all and (max-width: 400px){
+                    padding: .50rem .75rem;
+                }
                 & + p {
                     text-align: center;
                 }
@@ -76,6 +80,7 @@ body {
             font-style: italic;
             text-align: center;
             border: solid 1px;
+            margin: 2rem;
         }
     }
 }
