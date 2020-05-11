@@ -147,10 +147,11 @@ body footer {
   font-size: 1rem;
   letter-spacing: 0.025rem;
 }
-#form input[type=submit] {
+#form + #submit {
   text-transform: uppercase;
   font-family: "source-sans-pro-bold", helvetica, sans-serif;
   color: #fff;
+  font-size: 1rem;
 }
 
 #summary h3 {
@@ -718,7 +719,7 @@ ul {
   margin: 2rem 0 0 0;
   border: solid #eeeeee 2px;
 }
-#main #form input[type=submit] {
+#main #form + #submit {
   width: 100%;
   border: none;
   height: auto;
@@ -728,11 +729,11 @@ ul {
   transition: background-color 200ms ease-in-out;
   cursor: pointer;
 }
-#main #form input[type=submit]:hover {
+#main #form + #submit:hover {
   background-color: #18bfef;
 }
 @media all and (min-width: 981px) {
-  #main #form input[type=submit] {
+  #main #form + #submit {
     width: 50%;
     margin: 2rem 25%;
   }

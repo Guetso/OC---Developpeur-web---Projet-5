@@ -194,14 +194,14 @@ emptyCart()
 
 // Récupération des informations du formulaire pour requête POST au serveur
 
-const form = document.getElementById("form")
+const submit = document.getElementById("submit")
 const firstName = document.getElementById("firstname")
 const lastName = document.getElementById("lastname")
 const address = document.getElementById("address")
 const city = document.getElementById("city")
 const email = document.getElementById("email")
 
-form.addEventListener("submit", function (event) { // Au moment du la soumission du formulaire :
+submit.addEventListener("click", function (event) { // Au moment du la soumission du formulaire :
     event.preventDefault()
     ///Creation d'une variable contact contenant les informations de contact saisie par l'utilisateur
     const contact = {
