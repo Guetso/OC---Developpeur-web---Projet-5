@@ -123,7 +123,7 @@ get("http://localhost:3000/api/cameras/").then(function (response) { // Avec la 
             const storageItem = JSON.parse(localStorage.getItem(i))
             rawOrder.push(storageItem)                              // Le rawOrder pouvant contenir des lignes de commande contenant le même article (même caméra + même lentille) il va falloir le nettoyer pour additionner les lignes similaires.
         }
-        
+
         const cleanOrder = cleanArray(rawOrder)                     // On fait appel à la fonction "CleanArray" qui va créer une liste des identifiants uniques de rawOrder
         cleanOrder.forEach(function (line) {                        // Pour chacun de ces identifiants uniques : on va le comparer avec notre magasin
             for (let i = 0; i < store.length; i++) {                // On demande pour chaque article présent dans la magasin
@@ -171,7 +171,7 @@ get("http://localhost:3000/api/cameras/").then(function (response) { // Avec la 
             subCounter = subCounter + (parseInt(cartLine.subtotal / 100))
             const subtt = document.getElementById("subtt")
             subtt.innerText = subCounter + " €"
-            sessionStorage.setItem("total",subCounter)
+            sessionStorage.setItem("total", subCounter)
         }
     })
 }).catch(function (error) {
@@ -194,40 +194,62 @@ emptyCart()
 
 // Récupération des informations du formulaire pour requête POST au serveur
 
-const submit = document.getElementById("submit")
+const main = document.getElementById("main")
+const form = document.getElementById("form")
 const firstName = document.getElementById("firstname")
 const lastName = document.getElementById("lastname")
 const address = document.getElementById("address")
 const city = document.getElementById("city")
 const email = document.getElementById("email")
+const submit = document.getElementById("submit")
 
 submit.addEventListener("click", function (event) { // Au moment du la soumission du formulaire :
     event.preventDefault()
-    ///Creation d'une variable contact contenant les informations de contact saisie par l'utilisateur
-    const contact = {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        address: address.value,
-        city: city.value,
-        email: email.value
+    console.log(form.checkValidity())
+    if (cart.length < 1) { //Apparition d'un message d'information indiquant que le panier est vide
+        if (document.querySelector("aside") === null) {
+            const aside = main.appendChild(document.createElement("aside"))
+            aside.classList.add("error", "error__panier", "error__panier--anim") // On ajoute la classe "error" à la div pour traitement CSS
+            aside.innerText = "Votre panier est vide" // On y affiche le message d'erreur
+        } else { // Pour rejouer l'animation en cas de multi-clique sur le bouton "envoyer"
+            const aside = document.querySelector("aside")
+            main.removeChild(aside)
+            main.appendChild(aside)
+        }
+    } else if (form.checkValidity() === true) {
+        ///Creation d'une variable contact contenant les informations de contact saisie par l'utilisateur
+        const contact = {
+            firstName: firstName.value,
+            lastName: lastName.value,
+            address: address.value,
+            city: city.value,
+            email: email.value
+        }
+        const products = [] // Création d'une variables "products" qui contient les informations du panier
+        for (let i = 0; i < cart.length; i++) {
+            products.push(cart[i].id)
+        }
+
+        const data = { contact, products } // Création d'une variable "data" qui contient les 2 éléments à transmettre au serveur
+
+        /// Envoie de la requête
+
+        post(data).then(function (response) {
+            window.location.href = "confirm.html"
+            const myOrder = JSON.stringify(response)      // On transforme cet objet en chaine de caractère
+            sessionStorage.setItem("myOrder", myOrder)
+            localStorage.clear()
+        }).catch(function (error) {
+            console.error("Erreur lors de l'envoi des données: " + error)
+        })
+    } else if (document.querySelector("aside") === null) {
+        const aside = main.appendChild(document.createElement("aside"))
+        aside.classList.add("error", "error__panier", "error__panier--anim") // On ajoute la classe "error" à la div pour traitement CSS
+        aside.innerText = "Veuillez vérifier votre saisie"
+    } else { // Pour rejouer l'animation en cas de multi-clique sur le bouton "envoyer"
+        const aside = document.querySelector("aside")
+        main.removeChild(aside)
+        main.appendChild(aside)
     }
-
-    const products = [] // Création d'une variables "products" qui contient les informations du panier
-    for (let i = 0; i < cart.length; i++) {
-        products.push(cart[i].id)
-    }
-
-    const data = { contact, products } // Création d'une variable "data" qui contient les 2 éléments à transmettre au serveur
-
-    /// Envoie de la requête
-
-    post(data).then(function (response) {
-        window.location.href = "confirm.html"
-        const myOrder = JSON.stringify(response)      // On transforme cet objet en chaine de caractère
-        sessionStorage.setItem("myOrder",myOrder)
-        localStorage.clear() 
-    }).catch(function (error) {
-        console.error("Erreur lors de l'envoi des données: " + error)
-    })
 })
 

@@ -99,28 +99,32 @@
                 </tfoot>
 
             </table>
+
             <a id="continue" href="index.html">Continuer mon shopping</a>
             <button id="empty">Vider mon panier</button>
+
             <p id="textForm">
                 Pour valider votre commande merci de remplir le formulaire :
+                <br>
+               <span>(* : champ obligatoire)</span>
             </p>
+            
             <form id="form">
                 <label for="firstname" ></label>
-                <input type="text" name="firstname" id="firstname" placeholder="Prénom" required>
+                <input type="text" name="firstname" id="firstname" placeholder="Prénom*" required maxlength="50" pattern="[^0-9]*">
                 <br>
                 <label for="lastname"></label>
-                <input type="text" name="secondname" id="lastname" placeholder="Nom" required>
+                <input type="text" name="secondname" id="lastname" placeholder="Nom*" required maxlength="50" pattern="[^0-9]*">
                 <br>
                 <label for="address"></label>
-                <textarea name="address" id="address" cols="25" rows="5" placeholder="Adresse" required></textarea>
+                <textarea name="address" id="address" cols="25" rows="5" placeholder="Adresse*" required maxlength="500" ></textarea>
                 <br>
                 <label for="city"></label>
-                <input type="text" name="town" id="city" placeholder="Ville" required>
+                <input type="text" name="town" id="city" placeholder="Ville*" required maxlength="100" pattern="[^0-9]*">
                 <br>
                 <label for="email"></label>
-                <input type="email" name="email" id="email" placeholder="Email" required>
+                <input type="email" name="email" id="email" placeholder="Email*" maxlength="50" required>
                 <br>
-                
             </form>
             <button type="button" id="submit">Envoyer</button>
         </section>

@@ -32,7 +32,7 @@ const createList = function () { // On créé une fonction qui va récupérer le
         console.error("Erreur lors de la requête", error) // Le message est transmis à la console pour accès aux détails
         const main = document.getElementById("main") // On accède à l'élément section de classe "main"
         const alert = main.appendChild(document.createElement("div")) // On y créer une "div"
-        alert.classList.add("error") // On ajoute la classe "error" à la div pour traitement CSS
+        alert.classList.add("error","error__server") // On ajoute la classe "error" à la div pour traitement CSS
         alert.innerText = "Une erreur s'est produite lors du chargement des articles" // On y affiche le message d'erreur
     })
 }
