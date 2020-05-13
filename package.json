@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch ./sass/main.scss:./css/style.css",
-    "prefix": "postcss --watch ./css/style.css --use autoprefixer -d ./public/css/prefixed/"
+    "prefix": "postcss --watch ./css/style.css --use autoprefixer -d ./public/css/prefixed/",
+    "build": "webpack --mode=production",
+    "dev": "webpack --mode=development"
   },
   "repository": {
     "type": "git",

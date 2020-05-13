@@ -1,5 +1,6 @@
 import { get } from "./config.js" // Importation de la requête AJAX
 import { environment } from "./config.js"
+import animationMenu from "./onScroll.js"
 
 const createList = function () { // On créé une fonction qui va récupérer les différents items de caméra dans l'API pour construire la liste des produits
     get(environment + "/api/cameras/").then(function (response) { // Elle fera appel à la fonction get avec l'URL appropriée, la fonction get contenant une promesse, on lui indique quoi faire en cas de succès de la requête
@@ -39,4 +40,3 @@ const createList = function () { // On créé une fonction qui va récupérer le
 
 
 createList() // On appel la fonction pour créer notre liste
-

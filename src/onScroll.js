@@ -2,7 +2,7 @@
 
 import { btnMenuOpen } from "./anim.js"
 
-(function(){
+export default(function(){
 
 const scrollY = function () {
     var supportPageOffset = window.pageXOffset !== undefined;

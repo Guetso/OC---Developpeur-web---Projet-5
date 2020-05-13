@@ -1,3 +1,5 @@
+import animationMenu from "./onScroll.js"
+
 const myOrder = JSON.parse(sessionStorage.getItem("myOrder"))
 console.log(myOrder)
 

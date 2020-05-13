@@ -1,5 +1,6 @@
 import { get } from "./config.js" // Importation de la requête AJAX
 import { environment } from "./config.js"
+import animationMenu from "./onScroll.js"
 /////////////////////
 
 // Fonction de création de la page en fonction du produit choisi
