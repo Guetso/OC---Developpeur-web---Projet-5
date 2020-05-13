@@ -1,6 +1,9 @@
-import { get } from "./config.js" // Importation de la requête AJAX
-import { environment } from "./config.js"
+import { environment, get } from "./config.js" // Importation de la requête AJAX
 import animationMenu from "./onScroll.js"
+
+(function(){
+ if (window.innerWidth <= 980) {}
+})()
 
 const createList = function () { // On créé une fonction qui va récupérer les différents items de caméra dans l'API pour construire la liste des produits
     get(environment + "/api/cameras/").then(function (response) { // Elle fera appel à la fonction get avec l'URL appropriée, la fonction get contenant une promesse, on lui indique quoi faire en cas de succès de la requête
@@ -33,7 +36,7 @@ const createList = function () { // On créé une fonction qui va récupérer le
         console.error("Erreur lors de la requête", error) // Le message est transmis à la console pour accès aux détails
         const main = document.getElementById("main") // On accède à l'élément section de classe "main"
         const alert = main.appendChild(document.createElement("div")) // On y créer une "div"
-        alert.classList.add("error","error__server") // On ajoute la classe "error" à la div pour traitement CSS
+        alert.classList.add("error", "error__server") // On ajoute la classe "error" à la div pour traitement CSS
         alert.innerText = "Une erreur s'est produite lors du chargement des articles" // On y affiche le message d'erreur
     })
 }

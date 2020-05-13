@@ -1,5 +1,4 @@
-import { get } from "./config.js" // Importation de la requête AJAX
-import { environment } from "./config.js"
+import { environment, get } from "./config.js" // Importation de la requête AJAX
 import animationMenu from "./onScroll.js"
 /////////////////////
 

@@ -1,6 +1,6 @@
 const path = require("path")
 
-module.exports = {
+let config = {
 
     entry: {
         index: "./src/index.js",
@@ -14,8 +14,6 @@ module.exports = {
         filename: "[name].js"
     },
 
-    watch: true,
-
     module: {
         rules: [
             {
@@ -25,5 +23,12 @@ module.exports = {
             }
         ]
     }
+}
 
+
+module.exports = function (env, argv) {
+    if (argv.mode === "development") {
+        config.devtool = "eval-cheap-module-source-map"
+    } else {config.devtool="source-map"}
+    return config
 }
