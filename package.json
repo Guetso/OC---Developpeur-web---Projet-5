@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/Guetso/Project5_front/issues"
   },
-  "homepage": "https://github.com/Guetso/Project5_front#readme"
+  "homepage": "https://github.com/Guetso/Project5_front#readme",
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
 }
