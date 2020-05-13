@@ -14,6 +14,16 @@ module.exports = {
         filename: "[name].js"
     },
 
-    watch: true
+    watch: true,
+
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: ["babel-loader"]
+            }
+        ]
+    }
 
 }
