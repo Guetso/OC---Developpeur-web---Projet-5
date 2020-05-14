@@ -182,7 +182,6 @@ body .error {
 body {
   background-color: #bababa;
   margin: 0;
-  width: 100vw;
   height: 100vh;
 }
 body #content {
@@ -378,15 +377,15 @@ ul {
     display: flex;
     align-items: center;
   }
-  nav .menu__list li div {
-    height: 70%;
-    padding-top: 5%;
-    padding-bottom: 5%;
+  nav .menu__list li .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
-  nav .menu__list li div .fa-facebook-f {
+  nav .menu__list li .container div .fa-facebook-f {
     letter-spacing: 0.433em;
   }
-  nav .menu__list li div a {
+  nav .menu__list li .container div a {
     display: inline;
     margin-right: 1rem;
     background-color: rgba(33, 41, 49, 0.699);
@@ -394,7 +393,7 @@ ul {
     padding: 0.5rem;
     transition: background-color 200ms ease-in-out;
   }
-  nav .menu__list li div a:hover {
+  nav .menu__list li .container div a:hover {
     background-color: #212931;
   }
   nav .menu__list :nth-child(3) {
