@@ -36,7 +36,7 @@
     <div id="content">
 
         <header>
-           
+
             <h1>
                 Oricameras
             </h1>
@@ -53,11 +53,13 @@
                         <li><a href="index.html">Notre sélection</a></li>
                         <li class="menu__list--active"><a href="panier.html">Votre panier</a></li>
                         <li>
-                            <div class="menu__social">
-                                <a class="menu__social__item fab fa-twitter" href="#"></a>
-                                <a class="menu__social__item fab fa-facebook-f" href="#"></a>
-                                <a class="menu__social__item fab fab fa-instagram" href="#"></a>
-                                <a class="menu__social__item fab fa-github" href="#"></a>
+                            <div class="container">
+                                <div class="menu__social">
+                                    <a class="menu__social__item fab fa-twitter" href="#"></a>
+                                    <a class="menu__social__item fab fa-facebook-f" href="#"></a>
+                                    <a class="menu__social__item fab fab fa-instagram" href="#"></a>
+                                    <a class="menu__social__item fab fa-github" href="#"></a>
+                                </div>
                             </div>
                         </li>
                     </ul>
@@ -77,7 +79,7 @@
                 Votre panier
             </h2>
             <table id="table">
-                
+
                 <thead>
                     <tr>
                         <th>Article</th>
@@ -107,21 +109,25 @@
             <p id="textForm">
                 Pour valider votre commande merci de remplir le formulaire :
                 <br>
-               <span>(* : champ obligatoire)</span>
+                <span>(* : champ obligatoire)</span>
             </p>
-            
+
             <form id="form">
-                <label for="firstname" ></label>
-                <input type="text" name="firstname" id="firstname" placeholder="Prénom*" required maxlength="50" pattern="[^0-9]*">
+                <label for="firstname"></label>
+                <input type="text" name="firstname" id="firstname" placeholder="Prénom*" required maxlength="50"
+                    pattern="[^0-9]*">
                 <br>
                 <label for="lastname"></label>
-                <input type="text" name="secondname" id="lastname" placeholder="Nom*" required maxlength="50" pattern="[^0-9]*">
+                <input type="text" name="secondname" id="lastname" placeholder="Nom*" required maxlength="50"
+                    pattern="[^0-9]*">
                 <br>
                 <label for="address"></label>
-                <textarea name="address" id="address" cols="25" rows="5" placeholder="Adresse*" required maxlength="500" ></textarea>
+                <textarea name="address" id="address" cols="25" rows="5" placeholder="Adresse*" required
+                    maxlength="500"></textarea>
                 <br>
                 <label for="city"></label>
-                <input type="text" name="town" id="city" placeholder="Ville*" required maxlength="100" pattern="[^0-9]*">
+                <input type="text" name="town" id="city" placeholder="Ville*" required maxlength="100"
+                    pattern="[^0-9]*">
                 <br>
                 <label for="email"></label>
                 <input type="email" name="email" id="email" placeholder="Email*" maxlength="50" required>
