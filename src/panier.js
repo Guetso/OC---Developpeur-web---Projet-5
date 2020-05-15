@@ -10,9 +10,16 @@ import animationMenu from './onScroll.js'
     console.log('Pas de nouvelle commande à ajouter') // Si ce n'est pas le  cas, il ne se passe rien, affichage d'un commentaire dans la console
   } else {
     // Si elle trouve un objet "newOrder" dans le sessionStorage
-    const newNb = localStorage.length // Elle créer une clé de valeur = à la taille du localStorage
+    let newNb = 0
+    for (let i = 0; i < localStorage.length; i++) {
+      if (localStorage.key(i) === 'ori_' + localStorage.length) {
+        newNb = localStorage.length + 1
+      } else {
+        newNb = localStorage.length
+      }
+    }
     const addToCart = sessionStorage.getItem('newOrder') // Elle créer une constante addToCart, qui est = à la valeur de "neworder"
-    localStorage.setItem(newNb, addToCart) // Elle attribue un nouvel objet dans le localStorage
+    localStorage.setItem('ori_' + newNb, addToCart) // Elle attribue un nouvel objet dans le localStorage
     sessionStorage.removeItem('newOrder') // Elle supprime le "newOrder du sessionStorage" ainsi il ne peut y avoir qu'un seul "newOrder" dans le sessionStorage
   }
 })()
@@ -136,10 +143,13 @@ get('http://localhost:3000/api/cameras/')
 
         const rawOrder = [] // On créé une variable rawOrder, qui contient tous les objet du local storage
         for (let i = 0; i < localStorage.length; i++) {
-          const storageItem = JSON.parse(localStorage.getItem(i))
-          rawOrder.push(storageItem) // Le rawOrder pouvant contenir des lignes de commande contenant le même article (même caméra + même lentille) il va falloir le nettoyer pour additionner les lignes similaires.
+          if (localStorage.key(i).startsWith('ori_')) {
+            const storageItem = JSON.parse(
+              localStorage.getItem(localStorage.key(i))
+            )
+            rawOrder.push(storageItem) // Le rawOrder pouvant contenir des lignes de commande contenant le même article (même caméra + même lentille) il va falloir le nettoyer pour additionner les lignes similaires.
+          }
         }
-
         const cleanOrder = cleanArray(rawOrder) // On fait appel à la fonction "CleanArray" qui va créer une liste des identifiants uniques de rawOrder
         cleanOrder.forEach(function (line) {
           // Pour chacun de ces identifiants uniques : on va le comparer avec notre magasin
@@ -205,9 +215,19 @@ get('http://localhost:3000/api/cameras/')
 const emptyCart = function () {
   const emptyBtn = document.getElementById('empty')
   emptyBtn.addEventListener('click', function () {
-    // Quand on clique sur le bouton "vider le panier"
-    localStorage.clear() // Efface le locale storage
-    location.reload() // Recharge la page
+    try {
+      for (let i = 0; i < localStorage.length; i++) {
+        // Une boucle for qui regardera chaque élément du localStorage. Il y a ici une subtilité qui fait qu'une des conditions d'itération de la boucle est la taille du tableau, qui sera amené à changer à chaque supression d'un élément.
+        while (localStorage.key(i).startsWith('ori_')) {
+          // On va donc utiliser une boucle "while" dans la boucle "for" pour être certain que la totalité du tableau sera parcouru. Tant qu'au moins un élément a une clé qui commence par 'ori_'
+          localStorage.removeItem(localStorage.key(i)) // Cet élément sera supprimé.
+        }
+      }
+    } catch (error) {
+      console.log("il n'y a plus de commande 'ori_' dans le localStorage") // Comme la boucle while va fatalement nous renvoyer une erreur lorsque le localStorage sera vide, on capture l'erreur
+    } finally {
+      location.reload() // Quoi qu'il arrive la page sera recharger si le bouton "Vider mon panier" est cliqué
+    }
   })
 }
 
