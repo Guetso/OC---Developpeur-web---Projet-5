@@ -1,5 +1,5 @@
 /* global sessionStorage, localStorage, XMLHttpRequest, location */
-import { environment, get } from './config.js' // Importation de la requête AJAX
+import { environment, get } from './configAjax.js' // Importation de la requête AJAX
 import btnMenu from './btnMenu/btnMenu.js' // Importation du bouton menu dynamique
 
 // On met en place une fonction qui s'auto exécute et qui vérifie si le session storage contient un objet "newOrder"

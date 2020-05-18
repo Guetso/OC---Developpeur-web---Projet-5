@@ -6,8 +6,7 @@ import { btnMenuOpen } from './toggleMenu.js' // On récupère le bouton du menu
 
 // FONCTIONS NECESSAIRES
 
-const scrollY = function () {
-  // On créer une fonction qui va calculer la quantité de scroll effectuée par l'utilisateur avec un polyfil pour la propriété window.pageYOffset
+const scrollY = function () { // On créer une fonction qui va calculer la quantité de scroll effectuée par l'utilisateur avec un polyfil pour la propriété window.pageYOffset
   const supportPageOffset = window.pageXOffset !== undefined
   const isCSS1Compat = (document.compatMode || '') === 'CSS1Compat'
   return supportPageOffset
@@ -17,7 +16,7 @@ const scrollY = function () {
       : document.body.scrollTop
 }
 
-// RECUPERATION DES VARIABLES NECESSAIRES
+// VARIABLES NECESSAIRES
 
 const rect = btnMenuOpen.getBoundingClientRect() // On récupère la position de notre bouton
 const constraint = document.querySelector( // On va aller chercher dans notre élément bouton, l'attribut qui indique...

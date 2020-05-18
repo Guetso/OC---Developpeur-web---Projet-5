@@ -9,6 +9,15 @@
         &--solid{
             color: black;
         }
+        .open{
+            font-family: inherit;
+            font-size: inherit;
+            font-weight: inherit;
+            text-transform: inherit;
+            color: inherit;
+            line-height: inherit;
+            letter-spacing: inherit;
+        }
     }
     &__list{
         color:#212931;
