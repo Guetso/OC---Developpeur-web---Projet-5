@@ -1,5 +1,5 @@
 /* global sessionStorage */
-import animationMenu from './onScroll.js'
+import btnMenu from './btnMenu/btnMenu.js' // Importation du bouton menu dynamique
 
 const myOrder = JSON.parse(sessionStorage.getItem('myOrder'))
 console.log(myOrder)
@@ -10,4 +10,4 @@ spanId.innerText = myOrder.orderId
 const spanTotal = document.getElementById('cmdTotal')
 spanTotal.innerText = sessionStorage.getItem('total') + ' €'
 
-animationMenu()
+btnMenu()

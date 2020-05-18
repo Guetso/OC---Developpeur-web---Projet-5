@@ -1,5 +1,5 @@
 import { environment, get } from './config.js' // Importation de la requête AJAX
-import animationMenu from './onScroll.js'
+import btnMenu from './btnMenu/btnMenu.js' // Importation du bouton menu dynamique
 
 const createList = function () {
   // On créé une fonction qui va récupérer les différents items de caméra dans l'API pour construire la liste des produits
@@ -44,4 +44,4 @@ const createList = function () {
 }
 
 createList() // On appel la fonction pour créer notre liste
-animationMenu()
+btnMenu()

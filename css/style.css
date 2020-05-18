@@ -273,7 +273,9 @@ body #content .error {
   padding-left: 3rem;
 }
 body #content .error__server {
-  margin: 2rem;
+  background-color: #FFBABA;
+  margin-bottom: 2rem;
+  background-image: url(../../img/icoError.ico);
 }
 body #content .error__panier {
   background-color: #FFBABA;

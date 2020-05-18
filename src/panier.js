@@ -1,6 +1,6 @@
 /* global sessionStorage, localStorage, XMLHttpRequest, location */
 import { environment, get } from './config.js' // Importation de la requête AJAX
-import animationMenu from './onScroll.js'
+import btnMenu from './btnMenu/btnMenu.js' // Importation du bouton menu dynamique
 
 // On met en place une fonction qui s'auto exécute et qui vérifie si le session storage contient un objet "newOrder"
 ;(function () {
@@ -300,4 +300,4 @@ submit.addEventListener('click', function (event) {
   }
 })
 
-animationMenu()
+btnMenu()

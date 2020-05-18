@@ -1,6 +1,6 @@
 /* global sessionStorage */
 import { environment, get } from './config.js' // Importation de la requête AJAX
-import animationMenu from './onScroll.js'
+import btnMenu from './btnMenu/btnMenu.js' // Importation du bouton menu dynamique
 
 // Fonction de création de la page en fonction du produit choisi
 
@@ -74,4 +74,4 @@ submit.addEventListener('click', function (event) {
 
 createItem() // On appel la fonction pour créer notre page produit
 
-animationMenu()
+btnMenu()

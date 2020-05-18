@@ -83,7 +83,9 @@ body {
             background-position: 10px center;
             padding-left: 3rem;
             &__server {
-                margin : 2rem;
+                background-color: #FFBABA;
+                margin-bottom : 2rem;
+                background-image: url(../../img/icoError.ico);
             }
             &__panier {
                 background-color: #FFBABA;
