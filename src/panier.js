@@ -1,15 +1,41 @@
-/* global sessionStorage, localStorage, XMLHttpRequest, location */
-import { environment, get } from './configAjax.js' // Importation de la requête AJAX
+/* global sessionStorage, localStorage */
+
+// MODULES NECESSAIRES
+
+import { environment, get, post } from './ajax/requetesAjax.js' // Importation de la requête AJAX
+import { Camera } from './class/camera.js' // Importation de la classe caméra
+import { Cartline } from './class/cartLine.js' // Importation de la classe caméra
+import {
+  cleanArray,
+  countQte,
+  emptyCart
+} from './outilsPanier/FonctionsPanier.js' // Importation de fonctions utiles au fonctionnement du panier
+import { formIsValid } from './outilsPanier/CtrlFormulaire.js'
 import btnMenu from './btnMenu/btnMenu.js' // Importation du bouton menu dynamique
 
-// On met en place une fonction qui s'auto exécute et qui vérifie si le session storage contient un objet "newOrder"
+// VARIABLES NECESSAIRES
+
+const urlGet = environment + '/api/cameras/' // L'URL de la route Get
+const urlPost = environment + '/api/cameras/order' // L'URL de la route Post
+const rawCart = [] // Correspond au contenu du panier brut, avant traitement
+const cart = [] // Correspond au contenu panier après traitement
+const store = [] // Correspond au total des produits disponibles
+
+const firstName = document.getElementById('firstname')
+const lastName = document.getElementById('lastname')
+const address = document.getElementById('address')
+const city = document.getElementById('city')
+const email = document.getElementById('email')
+const submit = document.getElementById('submit')
+
+// FONCTION DE RECUPERATION DU SESSION STORAGE
+
 ;(function () {
-  // La fonction s'exécute dès le chargement de la page
+  // On met en place une fonction qui s'auto exécute et qui vérifie si le session storage contient un objet "newOrder"
   if (sessionStorage.getItem('newOrder') === null) {
     // Elle vérifie qu'il existe bien une nouvelle commande stocké dans le sessionStorage
     console.log('Pas de nouvelle commande à ajouter') // Si ce n'est pas le  cas, il ne se passe rien, affichage d'un commentaire dans la console
-  } else {
-    // Si elle trouve un objet "newOrder" dans le sessionStorage
+  } else { // Si elle trouve un objet "newOrder" dans le sessionStorage
     let newNb = 0
     for (let i = 0; i < localStorage.length; i++) {
       if (localStorage.key(i) === 'ori_' + localStorage.length) {
@@ -19,249 +45,96 @@ import btnMenu from './btnMenu/btnMenu.js' // Importation du bouton menu dynamiq
       }
     }
     const addToCart = sessionStorage.getItem('newOrder') // Elle créer une constante addToCart, qui est = à la valeur de "neworder"
-    localStorage.setItem('ori_' + newNb, addToCart) // Elle attribue un nouvel objet dans le localStorage
+    localStorage.setItem('ori_' + newNb, addToCart) // Elle attribue un nouvel objet dans le localStorage avec une clé personnalisée (ori_+n°)
     sessionStorage.removeItem('newOrder') // Elle supprime le "newOrder du sessionStorage" ainsi il ne peut y avoir qu'un seul "newOrder" dans le sessionStorage
   }
 })()
 
-// CREATION DU PANIER
+// FONCTION DE CREATION DU PANIER
 
-// Initialisation des classes nécessaires à la création du panier :
-
-class Camera {
-  // Correspond à un modèle de caméra présent dans le catalogue du site
-  constructor (Id, Name, Price, Lenses) {
-    this.id = Id
-    this.name = Name
-    this.price = Price
-    this.lenses = Lenses
-  }
-}
-
-class Cartline {
-  // Correspond à une ligne du panier
-  constructor (Id, Name, Lense, Qte, Price) {
-    this.id = Id
-    this.name = Name
-    this.lense = Lense
-    this.qte = Qte
-    this.price = Price
-    this.subtotal = parseInt(this.qte) * parseInt(this.price)
-  }
-}
-
-// Initialisation des variables nécessaires  à la création du panier :
-
-const store = [] // Correspond au catalogue du magasin
-
-const cart = [] // Correspond au panier
-
-// Initialisation des fonctions nécessaires à la  création du panier :
-
-function cleanArray (array) {
-  // Cette fonction prend en paramètre un tableau. Elle permet de créer un tableau qui ne contient que les valeurs uniques de la clé "_id"
-  let i = array.length
-  let j = array.length
-  const len = array.length
-  const out = []
-  const obj = {}
-
-  for (i = 0; i < len; i++) {
-    obj[array[i]._id + '_' + array[i].lense] = 0
-  }
-  for (j in obj) {
-    out.push(j)
-  }
-  return out
-}
-
-function countQte (arr, list) {
-  // Cette fonction prend en paramètre un tableau et une liste qu'on va comparer pour determiner la quantité total d'un article précis dans le tableau et nous retourne cette quantité
-  let counter = 0
-  for (let i = 0; i < arr.length; i++) {
-    // Pour chaque élément du tableau
-    if (
-      arr[i]._id === list.split('_')[0] &&
-      arr[i].lense === list.split('_')[1]
-    ) {
-      // On cherche une correspondance de l'id et de la lentille avec la liste
-      counter = counter + parseInt(arr[i].qte) // A chaque correspondance trouvée, on ajout au compteur la quantitée trouvée
-    }
-  }
-  return counter // Cela nous retourne la quantité total d'un article dans le tableau
-}
-
-function post (toSend) {
-  return new Promise(function (resolve, reject) {
-    const httpRequest = new XMLHttpRequest()
-    httpRequest.open('POST', environment + '/api/cameras/order')
-    httpRequest.setRequestHeader('Content-Type', 'application/json')
-    httpRequest.send(JSON.stringify(toSend))
-    httpRequest.onreadystatechange = function () {
-      if (httpRequest.readyState === 4) {
-        if (httpRequest.status === 201) {
-          const response = JSON.parse(this.responseText)
-          console.log(response)
-          resolve(response)
-        } else {
-          reject(httpRequest)
-        }
+get(urlGet)
+  .then(function (response) { // Avec la requête AJAX on récupère la liste des articles sur le serveur (response).
+    for (let i = 0; i < response.length; i++) { // Pour chaque caméras présentes dans la réponse du serveur (5 caméras)
+      for (let y = 0; y < response[i].lenses.length; y++) { // ET pour chaques lentilles possibles à chaque caméra
+        const newCamera = new Camera( // On créé une instance de la classe Camera qui aura les caractéristiques suivantes :
+          response[i]._id + '_' + response[i].lenses[y], // Un Id qui est = à l'id du modèle concaténé avec le nom de chaque lentille
+          response[i].name, // Un nom inchangé par rapport à la réponse du serveur
+          response[i].price, // Un prix inchangé par rapport à la réponse du serveur
+          response[i].lenses // La lentille de ce modèle
+        )
+        store.push(newCamera) // L'instance ainsi créée est mis dans le tableau "store"
       }
     }
+    return store // Si la fonction se déroule sans problème, la promesse nous renvoi le tableau "store" qui contient ainsi 11 produits différents (5 caméras avec chaque option de lentille possible)
   })
-}
-
-// CREATION DU PANIER
-
-get('http://localhost:3000/api/cameras/')
   .then(function (response) {
-    // Avec la requête AJAX on récupère la liste des articles sur le serveur (response).
-    return new Promise(function (resolve, reject) {
-      // Si la requête aboutie : On créé une fonction qui prend en paramètre la liste des caméras que le serveur nous retourne. Cette fonction contient également une promesse.
-
-      // 1ère étape : Création du magasin (store) un tableau qui contient la liste des caméras en stock
-
-      for (let i = 0; i < response.length; i++) {
-        // Pour chaque caméras présentes dans la réponse du serveur (5 caméras)
-        for (let y = 0; y < response[i].lenses.length; y++) {
-          // ET pour chaques lentilles possibles à chaque caméra
-          const newCamera = new Camera( // On créé une instance de la classe Camera qui aura les caractéristiques suivantes :
-            response[i]._id + '_' + response[i].lenses[y], // Un Id qui est = à l'id du modèle concaténé avec le nom de chaque lentille
-            response[i].name, // Un nom inchangé par rapport à la réponse du serveur
-            response[i].price, // Un prix inchangé par rapport à la réponse du serveur
-            response[i].lenses // La lentille de ce modèle
+    for (let i = 0; i < localStorage.length; i++) { // Pour chaque objet du localStorage
+      if (localStorage.key(i).startsWith('ori_')) { // ET si la clé de cet objet commence par "ori_"
+        const itemToGet = JSON.parse(localStorage.getItem(localStorage.key(i))) // On créé une constante qui correspond à cet objet parsé en Json
+        rawCart.push(itemToGet) // Et on le met dans le rawCart
+      }
+    }
+    const cleanOrder = cleanArray(rawCart) // On fait appel à la fonction "CleanArray" qui va créer une liste des identifiants uniques de rawCart
+    cleanOrder.forEach(function (line) { // Pour chacun de ces identifiants uniques : on va le comparer avec notre magasin
+      for (let i = 0; i < response.length; i++) { // On demande pour chaque article présent dans la magasin
+        if (store[i].id === line) { // Si on trouve une correspondance entre l'id d'un article du magasin et l'id de notre liste de commande
+          const newCartline = new Cartline( // Alors on créé une ligne de panier
+            response[i].id.split('_')[0], // Avec un l'id correspondant = On divise l'Id et on ne garde que la 1ère partie avant le "_" on a donc retrouvé l'id original, lisible par le serveur
+            response[i].name, // Le nom du produit en question
+            response[i].id.split('_')[1], // Le choix de la lentille = On divise l'Id et on ne garde que la 2nd partie après le "_" on a donc le nom de la lentille choisie
+            countQte(rawCart, line), // Pour la quantité on fait appel à la fonction countQte qui prend en paramètre la liste de commande brut (= localStorage) et la liste des "ids" commandées elle va additionner toutes les quantités correspondantes à l'id
+            response[i].price // Le prix du produit en question
           )
-          store.push(newCamera) // L'instance ainsi créée est mis dans le tableau "store"
+          cart.push(newCartline) // On peut alors mettre cette ligne de panier dans le panier
         }
       }
-      resolve(store) // Si la fonction se déroule sans problème, la promesse nous renvoi le tableau "store" qui contient ainsi 11 produits différents (5 caméras avec chaque option de lentille possible)
-
-      // 2ème étape : Ajout d'une ligne de panier pour chaque objet présent dans le localStorage
     })
-      .then(function addCartLine () {
-        // Suite à la résolution de la promesse consistant à créer un magasin
-
-        const rawOrder = [] // On créé une variable rawOrder, qui contient tous les objet du local storage
-        for (let i = 0; i < localStorage.length; i++) {
-          if (localStorage.key(i).startsWith('ori_')) {
-            const storageItem = JSON.parse(
-              localStorage.getItem(localStorage.key(i))
-            )
-            rawOrder.push(storageItem) // Le rawOrder pouvant contenir des lignes de commande contenant le même article (même caméra + même lentille) il va falloir le nettoyer pour additionner les lignes similaires.
-          }
-        }
-        const cleanOrder = cleanArray(rawOrder) // On fait appel à la fonction "CleanArray" qui va créer une liste des identifiants uniques de rawOrder
-        cleanOrder.forEach(function (line) {
-          // Pour chacun de ces identifiants uniques : on va le comparer avec notre magasin
-          for (let i = 0; i < store.length; i++) {
-            // On demande pour chaque article présent dans la magasin
-            if (store[i].id === line) {
-              // Si on trouve une correspondance entre l'id d'un article du magasin et l'id de notre liste de commande
-              const newCartline = new Cartline( // Alors on créer une ligne de panier (instance de la classe CartLine)
-                store[i].id.split('_')[0], // Avec un l'id correspondant = On divise l'Id et on ne garde que la 1ère partie avant le "_" on a donc retrouvé l'id original, lisible par le serveur
-                store[i].name, // Le nom du produit en question
-                store[i].id.split('_')[1], // Le choix de la lentille = On divise l'Id et on ne garde que la 2nd partie après le "_" on a donc le nom de la lentille choisie
-                countQte(rawOrder, line), // Pour la quantité on fait appel à la fonction countQte qui prend en paramètre la liste de commande brut (= localStorage) et la liste des "ids" commandées elle va additionner toutes les quantités correspondantes à l'id
-                store[i].price // Le prix du produit en question
-              )
-              cart.push(newCartline) // On peut alors mettre cette ligne de panier dans le panier
-            }
-          }
-        })
-
-        // 2ème étape : Ajout d'une ligne de panier pour chaque objet présent dans le localStorage
-      })
-      .then(function () {
-        // On peut maintenant lancer la mise en forme du panier
-        let subCounter = 0
-        for (let i = 0; i < cart.length; i++) {
-          // Pour chaque élément du panier une ligne html doit être mise en forme
-
-          const tbody = document.getElementById('cart-tablebody')
-          const tr = document.createElement('tr')
-          tbody.appendChild(tr)
-          const td1 = document.createElement('td')
-          const td2 = document.createElement('td')
-          const td3 = document.createElement('td')
-          const td4 = document.createElement('td')
-          const td5 = document.createElement('td')
-          tr.appendChild(td1)
-          tr.appendChild(td2)
-          tr.appendChild(td3)
-          tr.appendChild(td4)
-          tr.appendChild(td5)
-
-          const cartLine = cart[i]
-          td1.innerText = cartLine.name
-          td2.innerText = cartLine.lense
-          td3.innerText = cartLine.price / 100 + ' €'
-          td4.innerText = cartLine.qte
-          td5.innerText = cartLine.subtotal / 100 + ' €'
-
-          // Fonction de calcul du total du panier
-          subCounter = subCounter + parseInt(cartLine.subtotal / 100)
-          const subtt = document.getElementById('subtt')
-          subtt.innerText = subCounter + ' €'
-          sessionStorage.setItem('total', subCounter)
-        }
-      })
+    return cart
   })
-  .catch(function (error) {
-    console.error('erreur lors du chargement du panier.', error)
-  })
+  .then(function (response) { // On peut maintenant lancer la mise en forme du panier
+    let subCounter = 0
+    for (let i = 0; i < response.length; i++) { // Pour chaque élément du panier une ligne html doit être mise en forme
+      const cartLine = response[i]
+      const tbody = document.getElementById('cart-tablebody')
+      const tr = document.createElement('tr')
+      const td1 = document.createElement('td')
+      const td2 = document.createElement('td')
+      const td3 = document.createElement('td')
+      const td4 = document.createElement('td')
+      const td5 = document.createElement('td')
+      tbody.appendChild(tr)
+      tr.appendChild(td1)
+      tr.appendChild(td2)
+      tr.appendChild(td3)
+      tr.appendChild(td4)
+      tr.appendChild(td5)
+      td1.innerText = cartLine.name
+      td2.innerText = cartLine.lense
+      td3.innerText = cartLine.price / 100 + ' €'
+      td4.innerText = cartLine.qte
+      td5.innerText = cartLine.subtotal / 100 + ' €'
 
-// Fonction de RAZ du panier
-
-const emptyCart = function () {
-  const emptyBtn = document.getElementById('empty')
-  emptyBtn.addEventListener('click', function () {
-    try {
-      for (let i = 0; i < localStorage.length; i++) {
-        // Une boucle for qui regardera chaque élément du localStorage. Il y a ici une subtilité qui fait qu'une des conditions d'itération de la boucle est la taille du tableau, qui sera amené à changer à chaque supression d'un élément.
-        while (localStorage.key(i).startsWith('ori_')) {
-          // On va donc utiliser une boucle "while" dans la boucle "for" pour être certain que la totalité du tableau sera parcouru. Tant qu'au moins un élément a une clé qui commence par 'ori_'
-          localStorage.removeItem(localStorage.key(i)) // Cet élément sera supprimé.
-        }
-      }
-    } catch (error) {
-      console.log("il n'y a plus de commande 'ori_' dans le localStorage") // Comme la boucle while va fatalement nous renvoyer une erreur lorsque le localStorage sera vide, on capture l'erreur
-    } finally {
-      location.reload() // Quoi qu'il arrive la page sera recharger si le bouton "Vider mon panier" est cliqué
+      // Fonction de calcul du total du panier
+      subCounter = subCounter + parseInt(cartLine.subtotal / 100)
+      const subtt = document.getElementById('subtt')
+      subtt.innerText = subCounter + ' €'
+      sessionStorage.setItem('total', subCounter) // on le stock dans le sessionStorage pour réutilisation dans confirm.js
     }
   })
-}
+  .catch(function (error) { // Si la requête Xhr et/ou la création de la liste échoue(nt)
+    console.error('Erreur lors de la requête: ', error) // Le message est transmis à la console pour accès aux détails
+    const main = document.getElementById('main') // On accède à l'élément section de classe "main"
+    const alert = main.appendChild(document.createElement('div')) // On y créer une "div"
+    alert.classList.add('error', 'error__server') // On ajoute la classe "error" et "__server" à la div pour traitement CSS
+    alert.innerText =
+      "Une erreur s'est produite lors du chargement des articles" // On y affiche le message d'erreur
+  })
 
-emptyCart()
+// SOUMISSION DU FORMULAIRE
 
-// Récupération des informations du formulaire pour requête POST au serveur
-
-const main = document.getElementById('main')
-const form = document.getElementById('form')
-const firstName = document.getElementById('firstname')
-const lastName = document.getElementById('lastname')
-const address = document.getElementById('address')
-const city = document.getElementById('city')
-const email = document.getElementById('email')
-const submit = document.getElementById('submit')
-
-submit.addEventListener('click', function (event) {
-  // Au moment du la soumission du formulaire :
+submit.addEventListener('click', function (event) { // Au moment du la soumission du formulaire :
   event.preventDefault()
-  console.log(form.checkValidity())
-  if (cart.length < 1) {
-    // Apparition d'un message d'information indiquant que le panier est vide
-    if (document.querySelector('aside') === null) {
-      const aside = main.appendChild(document.createElement('aside'))
-      aside.classList.add('error', 'error__panier', 'error__panier--anim') // On ajoute la classe "error" à la div pour traitement CSS
-      aside.innerText = 'Votre panier est vide' // On y affiche le message d'erreur
-    } else {
-      // Pour rejouer l'animation en cas de multi-clique sur le bouton "envoyer"
-      const aside = document.querySelector('aside')
-      main.removeChild(aside)
-      main.appendChild(aside)
-    }
-  } else if (form.checkValidity() === true) {
-    // Creation d'une variable contact contenant les informations de contact saisie par l'utilisateur
+  if (formIsValid(cart) === true) { // Creation d'une variable contact contenant les informations de contact saisie par l'utilisateur
     const contact = {
       firstName: firstName.value,
       lastName: lastName.value,
@@ -273,31 +146,24 @@ submit.addEventListener('click', function (event) {
     for (let i = 0; i < cart.length; i++) {
       products.push(cart[i].id)
     }
-
     const data = { contact, products } // Création d'une variable "data" qui contient les 2 éléments à transmettre au serveur
-
-    /// Envoie de la requête
-
-    post(data)
+    post(urlPost, data)
       .then(function (response) {
         window.location.href = 'confirm.html'
         const myOrder = JSON.stringify(response) // On transforme cet objet en chaine de caractère
         sessionStorage.setItem('myOrder', myOrder)
         localStorage.clear()
       })
-      .catch(function (error) {
-        console.error("Erreur lors de l'envoi des données: " + error)
+      .catch(function (error) { // Si la requête Xhr et/ou la création de la liste échoue(nt)
+        console.error('Erreur lors de la requête: ', error) // Le message est transmis à la console pour accès aux détails
+        const main = document.getElementById('main') // On accède à l'élément section de classe "main"
+        const alert = main.appendChild(document.createElement('div')) // On y créer une "div"
+        alert.classList.add('error', 'error__server') // On ajoute la classe "error" et "__server" à la div pour traitement CSS
+        alert.innerText =
+          "Une erreur s'est produite lors de l'envoi du formulaire" // On y affiche le message d'erreur
       })
-  } else if (document.querySelector('aside') === null) {
-    const aside = main.appendChild(document.createElement('aside'))
-    aside.classList.add('error', 'error__panier', 'error__panier--anim') // On ajoute la classe "error" à la div pour traitement CSS
-    aside.innerText = 'Veuillez vérifier votre saisie'
-  } else {
-    // Pour rejouer l'animation en cas de multi-clique sur le bouton "envoyer"
-    const aside = document.querySelector('aside')
-    main.removeChild(aside)
-    main.appendChild(aside)
   }
 })
 
-btnMenu()
+emptyCart() // Fonction de remise à zéro du panier
+btnMenu() // On appelle la fonction pour activer le bouton dynamique du menu

@@ -1,6 +1,6 @@
 // MODULES NECESSAIRES
 
-import { environment, get } from './configAjax.js' // Importation de la requête AJAX
+import { environment, get } from './ajax/requetesAjax.js' // Importation de la requête AJAX
 import btnMenu from './btnMenu/btnMenu.js' // Importation du bouton menu dynamique
 
 // VARIABLES NECESSAIRES

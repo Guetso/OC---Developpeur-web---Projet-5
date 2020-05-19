@@ -4,7 +4,8 @@
 
 const environment = 'http://localhost:3000'
 
-const get = function (url) { // On créé une fonction qui permet d'utiliser la méthode GET sur une URL donnée
+const get = function (url) {
+  // On créé une fonction qui permet d'utiliser la méthode GET sur une URL donnée
   return new Promise(function (resolve, reject) { // Cette fonction retournera une promesse
     const httpRequest = new XMLHttpRequest() // La fonction va créer une requête AJAX
     httpRequest.onreadystatechange = function () { // On va suivre l'évolution de la requête
@@ -21,5 +22,26 @@ const get = function (url) { // On créé une fonction qui permet d'utiliser la 
   })
 }
 
+const post = function (url, toSend) {
+  return new Promise(function (resolve, reject) {
+    const httpRequest = new XMLHttpRequest()
+    httpRequest.onreadystatechange = function () {
+      if (httpRequest.readyState === 4) {
+        if (httpRequest.status === 201) {
+          const response = JSON.parse(this.responseText)
+          console.log(response)
+          resolve(response)
+        } else {
+          reject(httpRequest)
+        }
+      }
+    }
+    httpRequest.open('POST', url, true)
+    httpRequest.setRequestHeader('Content-Type', 'application/json')
+    httpRequest.send(JSON.stringify(toSend))
+  })
+}
+
 export { environment }
 export { get }
+export { post }
